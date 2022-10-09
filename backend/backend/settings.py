@@ -142,7 +142,7 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 100
 }
 
-BASE_USR_PATH = 'wakebend/'
+BASE_USR_PATH = 'gowake/'
 
 
 
