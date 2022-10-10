@@ -11,14 +11,15 @@ jobs:
         if: ${{ !env.ACT }}
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.LIVE_SERVER_IP }}
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_USER_PASSWORD }}
-          port: ${{ secrets.DEPLOY_PORT }}
+          port: ${{ secrets.SERVER_SSH_PORT }}
           script: |
-            cd ${{ secrets.PROJECT_PATH }}
-            git pull ${{secrets.REPO_URL}}
-            python manage.py collectstatic            
-            python manage.py makemigrations
-            python manage.py migrate
+            cd ${{ secrets.SERVER_PROJECT_PATH }}
+            git pull
+            source env/bin/activate
+            python backend/manage.py collectstatic
+            python backend/manage.py makemigrations
+            python backend/manage.py migrate
             echo ${{ secrets.SERVER_USER_PASSWORD }} | sudo -S systemctl restart gunicorn
