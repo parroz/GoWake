@@ -4,11 +4,9 @@ on:
     branches: [main]
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy to server
-      # don't run locally
-        if: ${{ !env.ACT }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -16,6 +14,7 @@ jobs:
           password: ${{ secrets.SERVER_USER_PASSWORD }}
           port: ${{ secrets.SERVER_SSH_PORT }}
           script: |
+            whoami
             cd ${{ secrets.SERVER_PROJECT_PATH }}
             git pull
             source env/bin/activate
