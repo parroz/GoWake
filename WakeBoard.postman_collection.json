@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"mmont\",\r\n    \"password\": \"mehkol2507\"\r\n}",
+					"raw": "{\r\n    \"username\": \"mmont\",\r\n    \"password\": \"*****\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
