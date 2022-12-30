@@ -18,6 +18,7 @@ jobs:
             cd ${{ secrets.SERVER_PROJECT_PATH }}
             git pull
             source env/bin/activate
-            python backend/manage.py makemigrations
+            python backend/manage.py makemigrations api
+            python backend/manage.py makemigrations            
             python backend/manage.py migrate
             echo ${{ secrets.SERVER_USER_PASSWORD }} | sudo -S systemctl restart gunicorn
