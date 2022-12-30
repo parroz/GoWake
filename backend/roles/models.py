@@ -4,7 +4,7 @@ from datetime import date
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-
+"""
 class OfficialCategory(models.Model):
 	name = models.CharField(max_length=200, blank=False, unique=True)
 
@@ -29,7 +29,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
 	instance.profile.save()
-
+"""
 # class Category(models.Model):
 #     GENDER_MALE = 0
 #     GENDER_FEMALE = 1

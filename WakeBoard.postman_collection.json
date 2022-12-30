@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "e475085b-dfb2-4e25-9b78-6cb63e1b4d24",
+		"name": "WakeBoard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16169043"
+	},
+	"item": [
+		{
+			"name": "Get all Competitions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/competitions/2/officials",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"competitions",
+						"2",
+						"officials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Competition by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/competitions/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"competitions",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"mmont\",\r\n    \"password\": \"*****\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/auth/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Athletes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/competitions/1/athletes",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"competitions",
+						"1",
+						"athletes"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Officials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/competitions/1/officials",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"competitions",
+						"1",
+						"officials"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Events",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/competitions/1/events",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"competitions",
+						"1",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Event By id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Athlete by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/competitions/1/athlete/1",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"competitions",
+						"1",
+						"athlete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Official by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/competitions/1/official/1",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"competitions",
+						"1",
+						"official",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Athelete Events",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Athlete Event by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/competitions/1/athlete/1/athlete-event/1",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"competitions",
+						"1",
+						"athlete",
+						"1",
+						"athlete-event",
+						"1"
+					],
+					"query": [
+						{
+							"key": "A",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
