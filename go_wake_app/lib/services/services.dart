@@ -19,9 +19,7 @@ class Services{
       _secureStorageService.writeToken(auth.token);
       _secureStorageService.writeCredentials(password);
     }
-    if (response.statusCode == 400) {
 
-    }
     return Auth.fromJson(jsonDecode(response.body));
   }
 

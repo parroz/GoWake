@@ -16,9 +16,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKeyValidator = GlobalKey<FormState>();
-  bool _isLoading = false;
-
-  //final controller = LoginController();
 
   @override
   void initState() {
@@ -27,11 +24,11 @@ class _LoginScreenState extends State<LoginScreen> {
     controller.addListener(() {
       if (controller.state == LoginState.SUCCESS) {
         Navigator.of(context).pushNamed(
-          AppRoutes.SPLASH,
+          AppRoutes.HOME,
         );
       }
       if (controller.state == LoginState.FAIL) {
-        _showErrorDialog('Ocorreu um erro inesperado!');
+        _showErrorDialog(controller.errorMsg);
       }
     });
   }
@@ -40,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Erro!'),
+        title: const Text('Error!'),
         content: Text(msg),
         actions: [
           TextButton(
@@ -95,14 +92,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (controller.state == LoginState.LOADING)
                         const Center(
                           child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation(Color(0xFF044EA8)),
+                            valueColor:
+                                AlwaysStoppedAnimation(Color(0xFF044EA8)),
                           ),
                         )
                       else
                         ElevatedButton(
-                          onPressed: controller.login,
+                          onPressed: () {
+                            if (_formKeyValidator.currentState!.validate()) {
+                              controller.login();
+                            } },
                           style: ElevatedButton.styleFrom(
                             primary: const Color(0xFF044EA8),
+                            //backgroundColor: Theme.of(context).primaryColor,
+                            foregroundColor: Colors.white,
                             padding: const EdgeInsets.symmetric(
                               horizontal: 30,
                               vertical: 8,
@@ -117,6 +120,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: controller.login,
                         style: ElevatedButton.styleFrom(
                           primary: const Color(0xFFCB6007),
+                          // backgroundColor: Theme.of(context).primaryColor,
+                          foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(
                             horizontal: 30,
                             vertical: 8,

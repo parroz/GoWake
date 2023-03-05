@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/app_routes.dart';
+
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
 
@@ -9,7 +11,7 @@ class CustomDrawer extends StatelessWidget {
       onDestinationSelected: (index) {
         if (index == 1) {
           Navigator.of(context).pop();
-          Navigator.of(context).pushNamed('/config');
+          Navigator.of(context).pushNamed(AppRoutes.SETTINGS);
         }
       },
       children: [

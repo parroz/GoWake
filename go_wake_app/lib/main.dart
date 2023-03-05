@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_wake_app/configuration/configuration_controller.dart';
+import 'package:go_wake_app/configuration/configuration_page.dart';
 import 'package:go_wake_app/home/home_page.dart';
 import 'package:go_wake_app/services/service_locator.dart';
 import 'package:go_wake_app/shared/themes/themes.dart';
@@ -8,9 +10,9 @@ import 'package:go_wake_app/views/login/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'splash.dart';
 
-void main()   {
-    WidgetsFlutterBinding.ensureInitialized();
-    setupServiceLocator();
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupServiceLocator();
   runApp(const MyApp());
 }
 
@@ -19,28 +21,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-       return MultiProvider(
+
+    return MultiProvider(
         providers: [
-
-    ChangeNotifierProvider(
-    create: (_) => LoginController(),
-    ),
-    ],
-
-
-
-      child:MaterialApp(
-      title: 'GoWake App',
-      debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.light,
-        theme: lightTheme,
-        darkTheme: dartTheme,
-      routes: {
-        AppRoutes.SPLASH: (ctx) => Splash(),
-        AppRoutes.LOGIN: (ctx) => LoginScreen(),
-        AppRoutes.HOME: (ctx) => HomePage(),
-      },
-    ));
+          ChangeNotifierProvider(
+            create: (_) => LoginController(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => ConfigurationController(),
+          ),
+        ],
+        child:   Consumer<ConfigurationController>(
+           builder: (BuildContext context, controller, widget) {
+          return MaterialApp(
+            title: 'GoWake App',
+            debugShowCheckedModeBanner: false,
+            themeMode: controller.themeMode.value,
+            theme: lightTheme,
+            darkTheme: dartTheme,
+            routes: {
+              AppRoutes.SPLASH: (ctx) => const Splash(),
+              AppRoutes.LOGIN: (ctx) => LoginScreen(),
+              AppRoutes.HOME: (ctx) => const HomePage(),
+              AppRoutes.SETTINGS: (ctx) => const ConfigurationPage(),
+            },
+          );}
+           ));
   }
 }
-

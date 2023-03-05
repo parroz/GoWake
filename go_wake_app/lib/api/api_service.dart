@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 class ApiService {
 
   ApiService();
-  final _urlLogin = 'https://gowake.daletech.pt/api';
+  //final _urlLogin = 'https://gowake.daletech.pt/api';
+  final _urlLogin = 'http://10.0.2.2:8000';
   Future<Response> getAllCountries() async {
     String url =  'https://api.apilayer.com/fixer/symbols';
     return await http.get(
@@ -13,8 +14,9 @@ class ApiService {
     );
   }
   Future<Response> login(String username,String password) async {
-    password="iVSK7X!ynP09";
-    return await http.post(Uri.parse('$_urlLogin/auth/'), body: {'username': username, 'password': password});
+    //password="iVSK7X!ynP09";
+    password ="mehkol2507";
+    return await http.post(Uri.parse('$_urlLogin/account/login/'), body: {'username': username, 'password': password});
   }
 
   getRequestHeaders() {
