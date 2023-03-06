@@ -1,0 +1,16 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="models.Event" />
+          <option value="backend.backend.urls.api" />
+          <option value="drf.backend.urls.api" />
+          <option value="watchmate.watchmate.watchlist" />
+          <option value="watchmate.user_app.api.models" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

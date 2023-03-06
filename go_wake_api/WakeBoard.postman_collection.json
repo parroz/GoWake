@@ -1,0 +1,1012 @@
+{
+	"info": {
+		"_postman_id": "e475085b-dfb2-4e25-9b78-6cb63e1b4d24",
+		"name": "WakeBoard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16169043"
+	},
+	"item": [
+		{
+			"name": "Get all Competitions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competitions",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competitions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Competition by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/competitions/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"competitions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Athletes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/competitions/1/athletes",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"competitions",
+						"1",
+						"athletes"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Officials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/competitions/1/officials",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"competitions",
+						"1",
+						"officials"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Events",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/17/events/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"17",
+						"events",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Event By id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/event/3",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"event",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Athlete by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/athlete/1",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"athlete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Official by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/official/5",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"official",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Athelete Events",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/17/event/18/athlete-events/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"17",
+						"event",
+						"18",
+						"athlete-events",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Athlete Event by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/17/event/18/athlete-event/1",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"17",
+						"event",
+						"18",
+						"athlete-event",
+						"1"
+					],
+					"query": [
+						{
+							"key": "A",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "Miguel",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "miguel@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "mehkol2507",
+							"type": "text"
+						},
+						{
+							"key": "password2",
+							"value": "mehkol2507",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/account/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"account",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "mmont",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "mehkol2507",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{SERVER}}/account/login/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"account",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Competition",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "code",
+							"value": "TESTE",
+							"type": "text"
+						},
+						{
+							"key": "discipline",
+							"value": "Wakeboard Boat",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Campeonato Fran;a",
+							"type": "text"
+						},
+						{
+							"key": "organizing_country",
+							"value": "FR",
+							"type": "text"
+						},
+						{
+							"key": "tournament_type",
+							"value": "NatcCH",
+							"type": "text"
+						},
+						{
+							"key": "venue",
+							"value": "Paris",
+							"type": "text"
+						},
+						{
+							"key": "site_code",
+							"value": "FRPARIS",
+							"type": "text"
+						},
+						{
+							"key": "age_groups",
+							"value": "IWWF",
+							"type": "text"
+						},
+						{
+							"key": "beginning_date",
+							"value": "2023-10-01 18:04:31",
+							"type": "text"
+						},
+						{
+							"key": "end_date",
+							"value": "2023-12-23 18:04:31",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mmont",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/competition-create/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition-create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Competition",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"TESTE\",\r\n    \"discipline\": \"Wakeboard Boat\",\r\n    \"name\": \"Campeonato Costa Caparica\",\r\n    \"age_groups\": \"IWWF\",\r\n    \"organizing_country\": \"PT\",\r\n    \"tournament_type\": \"NatcCH\",\r\n    \"venue\": \"Caparica\",\r\n    \"site_code\": \"PTCAPARICA\",\r\n    \"beginning_date\": \"2023-10-01T18:04:31Z\",\r\n    \"events\": [],\r\n    \"officials\": [],\r\n    \"athletes\": [],\r\n    \"end_date\": \"2023-12-23T18:04:31Z\",\r\n    \"createAt\": \"2023-02-18T16:21:16.657640Z\",\r\n    \"updateAt\": \"2023-02-18T16:21:16.657640Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/competitions/1/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competitions",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete competition",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competitions/2/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competitions",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Event",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update Event",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rounds\": 5,\r\n    \"event_class\": \"5 STAR\",\r\n    \"name\": \"Wakeskate insert new, now update\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/event/3/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"event",
+						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Event",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/event/2/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"event",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Officials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/officials/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"officials",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Official",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " \r\n        {\r\n            \"iwwfid\": \"M00159\",\r\n            \"position\": \"Judge\",\r\n            \"first_name\": \"José\",\r\n            \"last_name\": \"Milhazes\",\r\n            \"qualification\": \"WBJ1\",\r\n            \"country\": \"POR\",\r\n            \"region\": \"Europe\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/officials/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"officials",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Official",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "     {\r\n            \"iwwfid\": \"M00156\",\r\n            \"position\": \"Judge\",\r\n            \"first_name\": \"José\",\r\n            \"last_name\": \"Maria update\",\r\n            \"qualification\": \"WBJ1\",\r\n            \"country\": \"POR\",\r\n            \"region\": \"Europe\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/official/14/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"official",
+						"14",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Official",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/official/15/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"official",
+						"15",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Athlete",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"events\": [\r\n                {\r\n                    \"id\": 2\r\n                },\r\n                     {\r\n                    \"id\": 1\r\n                }\r\n            ],\r\n    \"fed_id\": \"ESP9813111\",\r\n    \"first_name\": \"Miguel\",\r\n    \"last_name\": \"Gomes\",\r\n    \"country\": \"PT\",\r\n    \"gender\": \"M\",\r\n    \"year_of_birth\": 1995\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/athletes/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"athletes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Athlete",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"events\": [\r\n        {\r\n            \"id\": 1,\r\n            \"createAt\": \"2023-02-19T15:12:55.272854Z\",\r\n            \"updateAt\": \"2023-02-19T15:12:55.272854Z\",\r\n            \"name\": \"Wakeboard\",\r\n            \"division\": \"\",\r\n            \"entry_type\": \"IP\",\r\n            \"participation\": true,\r\n            \"real_category\": \"U14\",\r\n            \"category_in_competition\": \"U14\",\r\n            \"username\": 1,\r\n            \"event\": 1\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"createAt\": \"2023-02-19T15:13:52.213757Z\",\r\n            \"updateAt\": \"2023-02-19T15:13:52.213757Z\",\r\n            \"name\": \"Wakeskate\",\r\n            \"division\": \"\",\r\n            \"entry_type\": \"IP\",\r\n            \"participation\": true,\r\n            \"real_category\": \"U18\",\r\n            \"category_in_competition\": \"U18\",\r\n            \"username\": 1,\r\n            \"event\": 2\r\n        }\r\n    ],\r\n    \"fed_id\": \"ESP9813111\",\r\n    \"first_name\": \"Miguel\",\r\n    \"last_name\": \"Gomes update\",\r\n    \"country\": \"PT\",\r\n    \"gender\": \"M\",\r\n    \"year_of_birth\": 1995\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/athlete/6/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"athlete",
+						"6",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Athlete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/1/athlete/6/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"1",
+						"athlete",
+						"6",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Event Athlete",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"division\": \"\",\r\n    \"entry_type\": \"IP\",\r\n    \"participation\": true,\r\n    \"real_category\": \"U50\",\r\n    \"category_in_competition\": \"U50\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/competition/17/event/18/athlete-events/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"17",
+						"event",
+						"18",
+						"athlete-events",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Event Athlete",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"division\": \"\",\r\n    \"entry_type\": \"IP\",\r\n    \"participation\": true,\r\n    \"real_category\": \"U50\",\r\n    \"category_in_competition\": \"U50\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/competition/17/event/18/athlete-events/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"17",
+						"event",
+						"18",
+						"athlete-events",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Password",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "current_password",
+							"value": "mehkol25071",
+							"type": "text"
+						},
+						{
+							"key": "new_password",
+							"value": "mehkol2507",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{SERVER}}/account/change-password/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"account",
+						"change-password",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Athlete Event",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competition/17/event/18/athlete-event/1",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competition",
+						"17",
+						"event",
+						"18",
+						"athlete-event",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insert from xml",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"code\": \"22ESP010\",\r\n            \"discipline\": \"Wakeboard Boat\",\r\n            \"name\": \"CAMPEONATO SEIXAL WAKEBOARD\",\r\n            \"organizing_country\": \"PT\",\r\n            \"tournament_type\": \"NatCH\",\r\n            \"venue\": \"SEIXAL\",\r\n            \"site_code\": \"PTSEIXAL\",\r\n            \"age_groups\": \"IWWF\",\r\n            \"beginning_date\": \"2023-02-19T15:02:57Z\",\r\n            \"end_date\": \"2023-02-21T15:02:59Z\",\r\n            \"events\":[\r\n              {\r\n            \"rounds\": 5,\r\n            \"event_class\": \"5 STAR\",\r\n            \"name\": \"Wakeskate seixal\",\r\n            \"code\":\"801\"\r\n             }\r\n            ],\r\n               \"athlete_events\":[\r\n              {\r\n              \"division\": \"\",\r\n             \"entry_type\": \"IP\",\r\n            \"participation\": true,\r\n             \"real_category\": \"U100\",\r\n             \"category_in_competition\": \"U100\",\r\n             \"code\":\"801\"\r\n             },\r\n                 {\r\n              \"division\": \"\",\r\n             \"entry_type\": \"IP\",\r\n            \"participation\": true,\r\n             \"real_category\": \"U110\",\r\n             \"category_in_competition\": \"U110\",\r\n             \"code\":\"801\"\r\n             }\r\n            ],\r\n           \"officials\": [\r\n           {\r\n            \"iwwfid\": \"M00200\",\r\n            \"position\": \"Judge\",\r\n            \"first_name\": \"Miguel\",\r\n            \"last_name\": \"Milhazes\",\r\n            \"qualification\": \"WBJ1\",\r\n            \"country\": \"POR\",\r\n            \"region\": \"Europe\"\r\n           },\r\n           {\r\n            \"iwwfid\": \"M00131\",\r\n            \"position\": \"Judge\",\r\n            \"first_name\": \"Joaquim\",\r\n            \"last_name\": \"Fernandes\",\r\n            \"qualification\": \"WBJ2\",\r\n            \"country\": \"POR\",\r\n            \"region\": \"Europe\"\r\n           }\r\n\r\n\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/create-all/",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"create-all",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
