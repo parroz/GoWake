@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rx_notifier/rx_notifier.dart';
 
 import '../../utils/app_routes.dart';
-import '../test_page.dart';
+
+import '../widgets/custom_button.dart';
+import '../widgets/custom_textfield.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Material(
       child: Scaffold(
         body: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(40.0, 50.0, 40.0, 0.0),
+          padding: const EdgeInsets.fromLTRB(40.0, 50.0, 40.0, 0.0),
           child: Consumer<LoginController>(
               builder: (BuildContext context, controller, widget) {
             return Padding(
@@ -64,31 +65,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      Image(
+                      const Image(
                           height: 200,
                           width: 200,
                           image: AssetImage('lib/assets/logo.png')),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       CustomTextField(
                           label: "Username",
                           icon: Icons.supervised_user_circle,
                           input: TextInputType.text,
-                          controller: controller,
                           textController: controller.usernameController,
                           obscureText: false),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       CustomTextField(
                           label: "Password",
                           icon: Icons.remove_red_eye_rounded,
                           input: TextInputType.text,
-                          controller: controller,
                           textController: controller.passwordController,
                           obscureText: true),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       if (controller.state == LoginState.LOADING)
                         const Center(
                           child: CircularProgressIndicator(
@@ -97,27 +96,41 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         )
                       else
-                        ElevatedButton(
+                        CustomButtom(
+
                           onPressed: () {
                             if (_formKeyValidator.currentState!.validate()) {
                               controller.login();
-                            } },
-                          style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFF044EA8),
-                            //backgroundColor: Theme.of(context).primaryColor,
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                              vertical: 8,
-                            ),
-                          ),
-                          child: Text(
-                            'Sign In',
-                          ),
+                            }
+                          },
+                          text: 'Continue',
                         ),
-                      SizedBox(height: 40),
+                      // ElevatedButton(
+                      //   onPressed: () {
+                      //     if (_formKeyValidator.currentState!.validate()) {
+                      //       controller.login();
+                      //     }
+                      //   },
+                      //   style: ElevatedButton.styleFrom(
+                      //     primary: const Color(0xFF044EA8),
+                      //     //backgroundColor: Theme.of(context).primaryColor,
+                      //     foregroundColor: Colors.white,
+                      //     padding: const EdgeInsets.symmetric(
+                      //       horizontal: 30,
+                      //       vertical: 8,
+                      //     ),
+                      //   ),
+                      //   child: const Text(
+                      //     'Sign In',
+                      //   ),
+                      // ),
+                      const SizedBox(height: 40),
                       ElevatedButton(
-                        onPressed: controller.login,
+                        onPressed: () => {
+                          Navigator.of(context).pushNamed(
+                            AppRoutes.REGISTER,
+                          )
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: const Color(0xFFCB6007),
                           // backgroundColor: Theme.of(context).primaryColor,
@@ -127,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             vertical: 8,
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Sign Up',
                         ),
                       ),
@@ -136,30 +149,6 @@ class _LoginScreenState extends State<LoginScreen> {
             );
           }),
         ),
-      ),
-    );
-  }
-
-  CustomTextField(
-      {required String label,
-      required IconData icon,
-      required TextInputType input,
-      required LoginController controller,
-      required TextEditingController textController,
-      required bool obscureText}) {
-    return TextFormField(
-      keyboardType: input,
-      controller: textController,
-      obscureText: obscureText,
-      onChanged: (value) {},
-      validator: (value) {
-        if (value!.isEmpty) {
-          return "Mandatory field";
-        }
-      },
-      decoration: InputDecoration(
-        labelText: label,
-        suffixIcon: Icon(icon),
       ),
     );
   }

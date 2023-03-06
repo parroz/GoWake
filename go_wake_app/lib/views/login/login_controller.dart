@@ -25,7 +25,6 @@ class LoginController extends ChangeNotifier  {
         _state = LoginState.FAIL;
         _errorMsg = auth.error;
       }
-
       notifyListeners();
       } catch (error) {
       _errorMsg = error.toString();

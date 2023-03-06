@@ -7,6 +7,7 @@ import 'package:go_wake_app/shared/themes/themes.dart';
 import 'package:go_wake_app/utils/app_routes.dart';
 import 'package:go_wake_app/views/login/login_controller.dart';
 import 'package:go_wake_app/views/login/login_screen.dart';
+import 'package:go_wake_app/views/register/register_page.dart';
 import 'package:provider/provider.dart';
 import 'splash.dart';
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
             routes: {
               AppRoutes.SPLASH: (ctx) => const Splash(),
               AppRoutes.LOGIN: (ctx) => LoginScreen(),
+              AppRoutes.REGISTER: (ctx) => const RegisterPage(),
               AppRoutes.HOME: (ctx) => const HomePage(),
               AppRoutes.SETTINGS: (ctx) => const ConfigurationPage(),
             },
