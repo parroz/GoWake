@@ -7,6 +7,7 @@ import 'package:go_wake_app/shared/themes/themes.dart';
 import 'package:go_wake_app/utils/app_routes.dart';
 import 'package:go_wake_app/views/login/login_controller.dart';
 import 'package:go_wake_app/views/login/login_screen.dart';
+import 'package:go_wake_app/views/register/register_controller.dart';
 import 'package:go_wake_app/views/register/register_page.dart';
 import 'package:provider/provider.dart';
 import 'splash.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (_) => ConfigurationController(),
           ),
+          ChangeNotifierProvider(
+            create: (_) => RegisterController(),
+          )
         ],
         child:   Consumer<ConfigurationController>(
            builder: (BuildContext context, controller, widget) {

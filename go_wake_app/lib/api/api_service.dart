@@ -1,10 +1,13 @@
+
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+
+import '../shared/constants.dart';
 class ApiService {
 
   ApiService();
   //final _urlLogin = 'https://gowake.daletech.pt/api';
-  final _urlLogin = 'http://10.0.2.2:8000';
+
   Future<Response> getAllCountries() async {
     String url =  'https://api.apilayer.com/fixer/symbols';
     return await http.get(
@@ -15,10 +18,12 @@ class ApiService {
   }
   Future<Response> login(String username,String password) async {
     //password="iVSK7X!ynP09";
-    password ="mehkol2507";
-    return await http.post(Uri.parse('$_urlLogin/account/login/'), body: {'username': username, 'password': password});
+    return await http.post(Uri.parse('${Constants.URL_API}/account/login/'), body: {'username': username, 'password': password});
   }
-
+  Future<Response> register(String username, String password, String password2, String email, String code)async {
+    return await http.post(Uri.parse('${Constants.URL_API}/account/register-jury/'),
+        body: {'username': username,'email':email,'group':'jury', 'password': password, 'password2': password2,'code': code});
+  }
   getRequestHeaders() {
     final headers = {
       'Content-Type': 'application/json',
@@ -35,6 +40,8 @@ class ApiService {
       headers: getRequestHeaders(),
     );
   }
+
+
 
 
 }

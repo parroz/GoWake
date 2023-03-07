@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../login/login_controller.dart';
+import '../../shared/constants.dart';
+import '../../utils/app_routes.dart';
+import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
 import 'register_controller.dart';
-
 import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -16,7 +16,37 @@ class RegisterPage extends StatefulWidget {
 
 class RegisterPageState extends State<RegisterPage> {
   final _formKeyValidator = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    var controller = Provider.of<RegisterController>(context, listen: false);
+    controller.addListener(() {
+      if (controller.state == LoginState.SUCCESS) {
+        Navigator.of(context).pushNamed(
+          AppRoutes.HOME,
+        );
+      }
+      if (controller.state == LoginState.FAIL) {
+        _showErrorDialog(controller.errorMsg);
+      }
+    });
+  }
 
+  void _showErrorDialog(String msg) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Error!'),
+        content: Text(msg),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Fechar'),
+          ),
+        ],
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -39,7 +69,6 @@ class RegisterPageState extends State<RegisterPage> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
-
                     ),
                     SizedBox(
                       height: 5,
@@ -71,12 +100,30 @@ class RegisterPageState extends State<RegisterPage> {
                     SizedBox(
                       height: 5,
                     ),
-                    CustomTextField(
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  controller:  controller.password2Controller,
+                  obscureText: true,
+                  onChanged: (value) {},
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Mandatory field";
+                    }
+                    if (controller.password2Controller.text !=controller.passwordController.text) {
+                      return 'Entered passwords do not match.';
+                    }
+                  },
+                  decoration: const InputDecoration(
+                    labelText: "Confirm Password",
+                    suffixIcon: Icon(Icons.lock_clock_rounded),
+                  ),
+                ),
+              /*      CustomTextField(
                         label: "Confirm Password",
                         icon: Icons.lock_clock_rounded,
                         input: TextInputType.text,
                         textController: controller.password2Controller,
-                        obscureText: true),
+                        obscureText: true),*/
                     SizedBox(
                       height: 5,
                     ),
@@ -86,6 +133,45 @@ class RegisterPageState extends State<RegisterPage> {
                         input: TextInputType.text,
                         textController: controller.codeController,
                         obscureText: false),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    CustomButtom(
+                      onPressed: () {
+                        if (_formKeyValidator.currentState!.validate()) {
+                          controller.register();
+                        }
+                      },
+                      textcolor: Colors.white,
+                      text: 'Continue',
+                      backgroundcolor: const Color(0xFFCB6007),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Have an account?  ', style: TextStyle(
+                      fontSize: 16,
+
+                    ),),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                              AppRoutes.LOGIN,
+                            );
+                          },
+                          child: const Text(
+                            "Sign In",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.blue,decoration: TextDecoration.underline,),
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),

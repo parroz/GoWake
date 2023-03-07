@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../shared/constants.dart';
 import '../../utils/app_routes.dart';
 
 import '../widgets/custom_button.dart';
@@ -97,53 +98,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         )
                       else
                         CustomButtom(
-
                           onPressed: () {
                             if (_formKeyValidator.currentState!.validate()) {
                               controller.login();
                             }
                           },
+                          textcolor: Colors.white,
                           text: 'Continue',
+                          backgroundcolor: const Color(0xFF044EA8),
                         ),
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     if (_formKeyValidator.currentState!.validate()) {
-                      //       controller.login();
-                      //     }
-                      //   },
-                      //   style: ElevatedButton.styleFrom(
-                      //     primary: const Color(0xFF044EA8),
-                      //     //backgroundColor: Theme.of(context).primaryColor,
-                      //     foregroundColor: Colors.white,
-                      //     padding: const EdgeInsets.symmetric(
-                      //       horizontal: 30,
-                      //       vertical: 8,
-                      //     ),
-                      //   ),
-                      //   child: const Text(
-                      //     'Sign In',
-                      //   ),
-                      // ),
+
                       const SizedBox(height: 40),
-                      ElevatedButton(
+                      CustomButtom(
                         onPressed: () => {
                           Navigator.of(context).pushNamed(
                             AppRoutes.REGISTER,
                           )
                         },
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color(0xFFCB6007),
-                          // backgroundColor: Theme.of(context).primaryColor,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 30,
-                            vertical: 8,
-                          ),
-                        ),
-                        child: const Text(
-                          'Sign Up',
-                        ),
+                        textcolor: Colors.white,
+                        text: 'Sign Up',
+                        backgroundcolor: const Color(0xFFCB6007),
                       ),
+
                     ],
                   )),
             );

@@ -23,7 +23,7 @@ from . import settings
 base_urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('account/', include('user_app.api.urls')),
+    path('account/', include('account_app.api.urls')),
     #path('api/', include(router.urls)),
 ]
 

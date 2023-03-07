@@ -7,6 +7,9 @@ from rest_framework.fields import CurrentUserDefault
 User = get_user_model()
 
 
+
+
+
 class EventSerializer(serializers.ModelSerializer):
     username = serializers.StringRelatedField(read_only=True)
 
