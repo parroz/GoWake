@@ -73,12 +73,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 5,
                       ),
+                      const Text(
+                        "Sign In",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       CustomTextField(
                           label: "Username",
                           icon: Icons.supervised_user_circle,
                           input: TextInputType.text,
                           textController: controller.usernameController,
-                          obscureText: false),
+                          obscureText: false,
+                          labelColor: Theme.of(context).colorScheme.primary),
                       const SizedBox(
                         height: 5,
                       ),
@@ -87,7 +96,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           icon: Icons.remove_red_eye_rounded,
                           input: TextInputType.text,
                           textController: controller.passwordController,
-                          obscureText: true),
+                          obscureText: true,
+                          labelColor: Theme.of(context).colorScheme.primary),
                       const SizedBox(height: 20),
                       if (controller.state == LoginState.LOADING)
                         const Center(
@@ -107,8 +117,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: 'Continue',
                           backgroundcolor: const Color(0xFF044EA8),
                         ),
+                      const SizedBox(
+                        height: 3,
+                      ),
+                      GestureDetector(
+                        onTap: () {
 
-                      const SizedBox(height: 40),
+                        },
+                        child: const Text(
+                          "Forgot password",textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xFF044EA8),decoration: TextDecoration.underline,),
+                        ),
+                      ),    const SizedBox(height: 40),
                       CustomButtom(
                         onPressed: () => {
                           Navigator.of(context).pushNamed(
@@ -119,7 +141,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: 'Sign Up',
                         backgroundcolor: const Color(0xFFCB6007),
                       ),
-
                     ],
                   )),
             );

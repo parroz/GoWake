@@ -78,7 +78,7 @@ class RegisterPageState extends State<RegisterPage> {
                         icon: Icons.supervised_user_circle,
                         input: TextInputType.text,
                         textController: controller.usernameController,
-                        obscureText: false),
+                        obscureText: false,labelColor: Theme.of(context).colorScheme.primary,),
                     SizedBox(
                       height: 5,
                     ),
@@ -87,7 +87,7 @@ class RegisterPageState extends State<RegisterPage> {
                         icon: Icons.email_rounded,
                         input: TextInputType.text,
                         textController: controller.emailController,
-                        obscureText: false),
+                        obscureText: false,labelColor: Theme.of(context).colorScheme.primary,),
                     SizedBox(
                       height: 5,
                     ),
@@ -96,7 +96,8 @@ class RegisterPageState extends State<RegisterPage> {
                         icon: Icons.lock_clock_rounded,
                         input: TextInputType.text,
                         textController: controller.passwordController,
-                        obscureText: true),
+                        obscureText: true,
+                        labelColor: Theme.of(context).colorScheme.primary,),
                     SizedBox(
                       height: 5,
                     ),
@@ -115,7 +116,10 @@ class RegisterPageState extends State<RegisterPage> {
                   },
                   decoration: const InputDecoration(
                     labelText: "Confirm Password",
-                    suffixIcon: Icon(Icons.lock_clock_rounded),
+                    labelStyle: TextStyle(
+                      color: Color(0xFFBE610D),
+                    ),
+                    suffixIcon: Icon(Icons.lock_clock_rounded,color:Color(0xFFB7BBC0)),
                   ),
                 ),
               /*      CustomTextField(
@@ -132,7 +136,8 @@ class RegisterPageState extends State<RegisterPage> {
                         icon: Icons.verified_user,
                         input: TextInputType.text,
                         textController: controller.codeController,
-                        obscureText: false),
+                        obscureText: false,
+                        labelColor:Theme.of(context).colorScheme.primary),
                     SizedBox(
                       height: 30,
                     ),
@@ -167,7 +172,7 @@ class RegisterPageState extends State<RegisterPage> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
-                                color: Colors.blue,decoration: TextDecoration.underline,),
+                                color: Color(0xFF044EA8),decoration: TextDecoration.underline,),
                           ),
                         )
                       ],

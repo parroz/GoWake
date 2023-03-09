@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             create: (_) => RegisterController(),
           )
         ],
-        child:   Consumer<ConfigurationController>(
+        child: Consumer<ConfigurationController>(
            builder: (BuildContext context, controller, widget) {
           return MaterialApp(
             title: 'GoWake App',

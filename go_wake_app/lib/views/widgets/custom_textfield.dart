@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
     required this.input,
     required this.textController,
     required this.obscureText,
+      required this.labelColor,
   });
 
   final String label;
@@ -17,7 +18,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType input;
   final TextEditingController textController;
   final bool obscureText;
-
+  final Color labelColor;
   @override
   Widget build(BuildContext context) {
 
@@ -33,7 +34,10 @@ class CustomTextField extends StatelessWidget {
       },
       decoration: InputDecoration(
         labelText: label,
-        suffixIcon: Icon(icon),
+        labelStyle: TextStyle(
+          color: labelColor,
+        ),
+        suffixIcon: Icon(icon,color: const Color(0xFFB7BBC0),),
       ),
     );
   }

@@ -15,7 +15,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: const CustomDrawer(),
       appBar: AppBar(
-        title: const Text('GoWake'),
+
+        iconTheme: const IconThemeData(color: Colors.white),
+
         actions: const [
 
         ],
