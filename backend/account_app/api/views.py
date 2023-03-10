@@ -65,7 +65,7 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         if user:
             return Response(
-                {"token": user.auth_token.key, "role": user.groups.first().name if user.groups.all() else "None"})
+                {"token": user.auth_token.key,"email": user.email,"username": user.username, "role": user.groups.first().name if user.groups.all() else "None"})
         else:
             return Response({"error": "Wrong Credentials"}, status=400)
 

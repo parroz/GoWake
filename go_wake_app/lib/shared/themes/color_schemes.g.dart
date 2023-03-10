@@ -4,7 +4,7 @@ const _lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFFBE610D),
   onPrimary: Color(0xFFFFFFFF),
-  primaryContainer: Color(0xFF0E4D91),
+  primaryContainer: Color(0xFF13509D),//0xFF0E4D91
   onPrimaryContainer: Color(0xFF22005D),
   secondary: Color(0xFF625B71),
   onSecondary: Color(0xFFFFFFFF),

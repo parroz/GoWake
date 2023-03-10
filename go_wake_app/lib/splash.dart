@@ -22,7 +22,7 @@ class _SplashState extends State<Splash> {
   _navigateToHome() async {
     Future.delayed(const Duration(seconds: 1), () {
       Navigator.of(context).pushNamed(
-        AppRoutes.HOME,
+        AppRoutes.LOGIN,
         arguments: 'Currency Converter',
       );});
   }

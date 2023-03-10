@@ -3,6 +3,10 @@ class Auth {
   String get token => _token;
   String _role="";
   String get role => _role;
+  String _username="";
+  String get username => _username;
+  String _email="";
+  String get email => _email;
   String _error="";
   String get error => _error;
 
@@ -12,6 +16,8 @@ class Auth {
     }else{
       _token = json['token'];
       _role = json['role'];
+      _email = json['email'];
+      _username = json['username'];
     }
   }
 

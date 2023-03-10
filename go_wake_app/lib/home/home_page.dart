@@ -14,8 +14,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const CustomDrawer(),
-      appBar: AppBar(
-
+      appBar: AppBar(centerTitle: true,
+      title:  Image.asset(
+          'lib/assets/logo_bar.png',
+          height: 30,
+        ),
         iconTheme: const IconThemeData(color: Colors.white),
 
         actions: const [

@@ -18,7 +18,8 @@ class Services{
       final SecureStorageService _secureStorageService =
       serviceLocator<SecureStorageService>();
       _secureStorageService.writeToken(auth.token);
-      _secureStorageService.writeCredentials(password);
+      String credentials = "${auth.username};${auth.email};${auth.role};$password";
+      _secureStorageService.writeCredentials(credentials);
     }
 
     return Auth.fromJson(jsonDecode(response.body));
@@ -32,7 +33,8 @@ class Services{
       final SecureStorageService _secureStorageService =
       serviceLocator<SecureStorageService>();
       _secureStorageService.writeToken(registerJury.token);
-      _secureStorageService.writeCredentials(password);
+      String credentials = "$username;$email;${"Jury"};$password";
+      _secureStorageService.writeCredentials(credentials);
     }
     return RegisterJury.fromJson(jsonDecode(response.body));
   }
