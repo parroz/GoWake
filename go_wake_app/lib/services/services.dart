@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:go_wake_app/models/competition.dart';
 import 'package:go_wake_app/services/service_locator.dart';
 
 import '../api/api_service.dart';
@@ -37,6 +38,15 @@ class Services{
       _secureStorageService.writeCredentials(credentials);
     }
     return RegisterJury.fromJson(jsonDecode(response.body));
+  }
+
+  Future<ResultCompetition> getCompetitions() async {
+    final ApiService apiService = ApiService();
+    final response = await  apiService.getCompetitions();
+    if (response.statusCode == 201) {
+
+    }
+    return ResultCompetition.fromJson(jsonDecode(response.body));
   }
 
 }

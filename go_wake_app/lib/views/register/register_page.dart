@@ -4,6 +4,7 @@ import '../../shared/constants.dart';
 import '../../utils/app_routes.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
+import '../widgets/error_dialog.dart';
 import 'register_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -27,26 +28,12 @@ class RegisterPageState extends State<RegisterPage> {
         );
       }
       if (controller.state == LoginState.FAIL) {
-        _showErrorDialog(controller.errorMsg);
+        ShowErrorDialog(controller.errorMsg,context);
       }
     });
   }
 
-  void _showErrorDialog(String msg) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Error!'),
-        content: Text(msg),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Fechar'),
-          ),
-        ],
-      ),
-    );
-  }
+
   @override
   Widget build(BuildContext context) {
     return Material(

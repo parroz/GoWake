@@ -4,4 +4,6 @@ class AppRoutes {
   static const LOGIN = '/login';
   static const REGISTER = '/register';
   static const SETTINGS = '/settings';
+  static const COMPETITIONS = '/competitions';
+
 }

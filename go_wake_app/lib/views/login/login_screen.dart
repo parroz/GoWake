@@ -7,6 +7,7 @@ import '../../utils/app_routes.dart';
 
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
+import '../widgets/error_dialog.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKeyValidator = GlobalKey<FormState>();
+  bool _isObscured = true;
 
   @override
   void initState() {
@@ -30,26 +32,12 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       }
       if (controller.state == LoginState.FAIL) {
-        _showErrorDialog(controller.errorMsg);
+        ShowErrorDialog(controller.errorMsg,context);
       }
     });
   }
 
-  void _showErrorDialog(String msg) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Error!'),
-        content: Text(msg),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Fechar'),
-          ),
-        ],
-      ),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -91,13 +79,31 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 5,
                       ),
-                      CustomTextField(
-                          label: "Password",
-                          icon: Icons.remove_red_eye_rounded,
-                          input: TextInputType.text,
-                          textController: controller.passwordController,
-                          obscureText: true,
-                          labelColor: Theme.of(context).colorScheme.primary),
+                    TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: controller.passwordController,
+                        obscureText: _isObscured,
+                        onChanged: (value) {},
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Mandatory field";
+                          }
+                        },
+                        decoration: InputDecoration(
+                          labelText: "Password",
+                          labelStyle: TextStyle(
+                              color: Theme.of(context).colorScheme.primary),
+
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _isObscured = !_isObscured;
+                            });
+                          },
+                          icon: Icon(Icons.remove_red_eye_rounded),
+                          color: const Color(0xFFB7BBC0),
+                        ),
+                        ),),
                       const SizedBox(height: 20),
                       if (controller.state == LoginState.LOADING)
                         const Center(
@@ -121,16 +127,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 3,
                       ),
                       GestureDetector(
-                        onTap: () {
-
-                        },
+                        onTap: () {},
                         child: const Text(
-                          "Forgot password",textAlign: TextAlign.center,
+                          "Forgot password",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 14,
-                            color: Color(0xFF044EA8),decoration: TextDecoration.underline,),
+                            color: Color(0xFF044EA8),
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
-                      ),    const SizedBox(height: 40),
+                      ),
+                      const SizedBox(height: 40),
                       CustomButtom(
                         onPressed: () => {
                           Navigator.of(context).pushNamed(
@@ -149,4 +157,5 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 }

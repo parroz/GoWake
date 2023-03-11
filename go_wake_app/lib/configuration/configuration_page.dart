@@ -17,9 +17,6 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
 
     var controller = Provider.of<ConfigurationController>(context, listen: false);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('GoWake'),
-      ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         child: Column(

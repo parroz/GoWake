@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../login/login_controller.dart';
 
 class CustomTextField extends StatelessWidget {
-    CustomTextField({
+  CustomTextField({
     Key? key,
     required this.label,
     required this.icon,
     required this.input,
     required this.textController,
     required this.obscureText,
-      required this.labelColor,
+    required this.labelColor,
   });
 
   final String label;
@@ -19,9 +19,9 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController textController;
   final bool obscureText;
   final Color labelColor;
+
   @override
   Widget build(BuildContext context) {
-
     return TextFormField(
       keyboardType: input,
       controller: textController,
@@ -37,9 +37,11 @@ class CustomTextField extends StatelessWidget {
         labelStyle: TextStyle(
           color: labelColor,
         ),
-        suffixIcon: Icon(icon,color: const Color(0xFFB7BBC0),),
+        suffixIcon: Icon(
+                icon,
+                color: const Color(0xFFB7BBC0),
+              ),
       ),
     );
   }
-  }
-
+}
