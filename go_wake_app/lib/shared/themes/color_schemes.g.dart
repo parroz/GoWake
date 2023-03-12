@@ -2,7 +2,7 @@ part of 'themes.dart';
 
 const _lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: Color(0xFFBE610D),
+  primary: Color(0xFFE17108),
   onPrimary: Color(0xFFFFFFFF),
   primaryContainer: Color(0xFF13509D),//0xFF0E4D91
   onPrimaryContainer: Color(0xFF22005D),
@@ -25,7 +25,7 @@ const _lightColorScheme = ColorScheme(
   surfaceVariant: Color(0xFFE7E0EB),
   onSurfaceVariant: Color(0xFF49454E),
   outline: Color(0xFF7A757F),
-  onInverseSurface: Color(0xFFF4EFF4),
+  onInverseSurface: Color(0xFFFFFFFF),
   inverseSurface: Color(0xFF313033),
   inversePrimary: Color(0xFFCB6007),
   shadow: Color(0xFF000000),
