@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../shared/constants.dart';
 import '../../utils/app_routes.dart';
 
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
+import '../widgets/error_dialog.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,6 +19,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKeyValidator = GlobalKey<FormState>();
+  bool _isObscured = true;
 
   @override
   void initState() {
@@ -29,26 +32,12 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       }
       if (controller.state == LoginState.FAIL) {
-        _showErrorDialog(controller.errorMsg);
+        ShowErrorDialog(controller.errorMsg,context);
       }
     });
   }
 
-  void _showErrorDialog(String msg) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Error!'),
-        content: Text(msg),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Fechar'),
-          ),
-        ],
-      ),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -72,21 +61,49 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 5,
                       ),
+                      const Text(
+                        "Sign In",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       CustomTextField(
                           label: "Username",
                           icon: Icons.supervised_user_circle,
                           input: TextInputType.text,
                           textController: controller.usernameController,
-                          obscureText: false),
+                          obscureText: false,
+                          labelColor: Theme.of(context).colorScheme.primary),
                       const SizedBox(
                         height: 5,
                       ),
-                      CustomTextField(
-                          label: "Password",
-                          icon: Icons.remove_red_eye_rounded,
-                          input: TextInputType.text,
-                          textController: controller.passwordController,
-                          obscureText: true),
+                    TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: controller.passwordController,
+                        obscureText: _isObscured,
+                        onChanged: (value) {},
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Mandatory field";
+                          }
+                        },
+                        decoration: InputDecoration(
+                          labelText: "Password",
+                          labelStyle: TextStyle(
+                              color: Theme.of(context).colorScheme.primary),
+
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _isObscured = !_isObscured;
+                            });
+                          },
+                          icon: Icon(Icons.remove_red_eye_rounded),
+                          color: const Color(0xFFB7BBC0),
+                        ),
+                        ),),
                       const SizedBox(height: 20),
                       if (controller.state == LoginState.LOADING)
                         const Center(
@@ -97,52 +114,40 @@ class _LoginScreenState extends State<LoginScreen> {
                         )
                       else
                         CustomButtom(
-
                           onPressed: () {
                             if (_formKeyValidator.currentState!.validate()) {
                               controller.login();
                             }
                           },
+                          textcolor: Colors.white,
                           text: 'Continue',
+                          backgroundcolor: const Color(0xFF044EA8),
                         ),
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     if (_formKeyValidator.currentState!.validate()) {
-                      //       controller.login();
-                      //     }
-                      //   },
-                      //   style: ElevatedButton.styleFrom(
-                      //     primary: const Color(0xFF044EA8),
-                      //     //backgroundColor: Theme.of(context).primaryColor,
-                      //     foregroundColor: Colors.white,
-                      //     padding: const EdgeInsets.symmetric(
-                      //       horizontal: 30,
-                      //       vertical: 8,
-                      //     ),
-                      //   ),
-                      //   child: const Text(
-                      //     'Sign In',
-                      //   ),
-                      // ),
+                      const SizedBox(
+                        height: 3,
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: const Text(
+                          "Forgot password",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xFF044EA8),
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
                       const SizedBox(height: 40),
-                      ElevatedButton(
+                      CustomButtom(
                         onPressed: () => {
                           Navigator.of(context).pushNamed(
                             AppRoutes.REGISTER,
                           )
                         },
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color(0xFFCB6007),
-                          // backgroundColor: Theme.of(context).primaryColor,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 30,
-                            vertical: 8,
-                          ),
-                        ),
-                        child: const Text(
-                          'Sign Up',
-                        ),
+                        textcolor: Colors.white,
+                        text: 'Sign Up',
+                        backgroundcolor: const Color(0xFFCB6007),
                       ),
                     ],
                   )),
@@ -152,4 +157,5 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 }

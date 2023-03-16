@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 
 import '../../models/auth.dart';
 import '../../services/services.dart';
+import '../../shared/constants.dart';
 
-enum LoginState { WAITING, LOADING, SUCCESS, FAIL }
+//enum LoginState { WAITING, LOADING, SUCCESS, FAIL }
 
 class LoginController extends ChangeNotifier  {
   LoginState _state = LoginState.WAITING;

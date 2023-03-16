@@ -56,6 +56,14 @@ class AthleteSerializer(serializers.ModelSerializer):
         exclude = ['competition']
 
 
+class CompetitionAppSerializer(serializers.ModelSerializer):
+    username = serializers.StringRelatedField(read_only=True)
+
+    class Meta:
+        model = Competition
+        exclude = ['createAt', 'updateAt']
+
+
 class CompetitionSerializer(serializers.ModelSerializer):
     events = EventSerializer(many=True, read_only=True)
     officials = OfficialSerializer(many=True, read_only=True)
