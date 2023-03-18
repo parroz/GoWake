@@ -4,6 +4,8 @@ import 'package:go_wake_app/configuration/configuration_page.dart';
 import 'package:go_wake_app/services/service_locator.dart';
 import 'package:go_wake_app/shared/themes/themes.dart';
 import 'package:go_wake_app/utils/app_routes.dart';
+import 'package:go_wake_app/views/competition_details/competition_detail_controller.dart';
+import 'package:go_wake_app/views/competition_details/competition_detail_page.dart';
 import 'package:go_wake_app/views/competitions/competitions_calendar_controller.dart';
 import 'package:go_wake_app/views/competitions/competitions_calendar_page.dart';
 import 'package:go_wake_app/views/login/login_controller.dart';
@@ -44,6 +46,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (_) => CompetitionCalendarController(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => CompetitionDetailController(),
           )
         ],
         child: Consumer<ConfigurationController>(
@@ -61,6 +66,7 @@ class MyApp extends StatelessWidget {
               AppRoutes.HOME: (ctx) => const CustomNavigationDrawer(),
               AppRoutes.SETTINGS: (ctx) => const ConfigurationPage(),
               AppRoutes.COMPETITIONS: (ctx) => const CompetitionsCalendarPage(),
+              AppRoutes.COMPETITION_DETAIL: (ctx) => const CompetitionDetailPage(),
             },
           );}
            ));

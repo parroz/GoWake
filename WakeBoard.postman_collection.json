@@ -18,13 +18,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{SERVER}}/api/competitions",
+					"raw": "{{SERVER}}/api/competitions/",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"competitions"
+						"competitions",
+						""
 					]
 				}
 			},
@@ -307,12 +308,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "Miguel",
+							"value": "Miguel12",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "miguel@gmail.com",
+							"value": "miguel12@gmail.com",
 							"type": "text"
 						},
 						{
@@ -328,15 +329,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/account/register/",
-					"protocol": "http",
+					"raw": "{{SERVER}}/account/register/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{SERVER}}"
 					],
-					"port": "8000",
 					"path": [
 						"account",
 						"register",
@@ -356,7 +352,7 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "mmont",
+							"value": "mmontz",
 							"type": "text"
 						},
 						{
@@ -987,7 +983,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n            \"code\": \"22ESP010\",\r\n            \"discipline\": \"Wakeboard Boat\",\r\n            \"name\": \"CAMPEONATO SEIXAL WAKEBOARD\",\r\n            \"organizing_country\": \"PT\",\r\n            \"tournament_type\": \"NatCH\",\r\n            \"venue\": \"SEIXAL\",\r\n            \"site_code\": \"PTSEIXAL\",\r\n            \"age_groups\": \"IWWF\",\r\n            \"beginning_date\": \"2023-02-19T15:02:57Z\",\r\n            \"end_date\": \"2023-02-21T15:02:59Z\",\r\n            \"events\":[\r\n              {\r\n            \"rounds\": 5,\r\n            \"event_class\": \"5 STAR\",\r\n            \"name\": \"Wakeskate seixal\",\r\n            \"code\":\"801\"\r\n             }\r\n            ],\r\n               \"athlete_events\":[\r\n              {\r\n              \"division\": \"\",\r\n             \"entry_type\": \"IP\",\r\n            \"participation\": true,\r\n             \"real_category\": \"U100\",\r\n             \"category_in_competition\": \"U100\",\r\n             \"code\":\"801\"\r\n             },\r\n                 {\r\n              \"division\": \"\",\r\n             \"entry_type\": \"IP\",\r\n            \"participation\": true,\r\n             \"real_category\": \"U110\",\r\n             \"category_in_competition\": \"U110\",\r\n             \"code\":\"801\"\r\n             }\r\n            ],\r\n           \"officials\": [\r\n           {\r\n            \"iwwfid\": \"M00200\",\r\n            \"position\": \"Judge\",\r\n            \"first_name\": \"Miguel\",\r\n            \"last_name\": \"Milhazes\",\r\n            \"qualification\": \"WBJ1\",\r\n            \"country\": \"POR\",\r\n            \"region\": \"Europe\"\r\n           },\r\n           {\r\n            \"iwwfid\": \"M00131\",\r\n            \"position\": \"Judge\",\r\n            \"first_name\": \"Joaquim\",\r\n            \"last_name\": \"Fernandes\",\r\n            \"qualification\": \"WBJ2\",\r\n            \"country\": \"POR\",\r\n            \"region\": \"Europe\"\r\n           }\r\n\r\n\r\n    ]\r\n}",
+					"raw": "{\r\n            \"code\": \"22ESP010\",\r\n            \"discipline\": \"Wakeboard Boat\",\r\n            \"name\": \"CAMPEONATO SEIXAL WAKEBOARD\",\r\n            \"organizing_country\": \"PT\",\r\n            \"tournament_type\": \"NatCH\",\r\n            \"venue\": \"SEIXAL\",\r\n            \"site_code\": \"PTSEIXAL\",\r\n            \"age_groups\": \"IWWF\",\r\n            \"beginning_date\": \"2023-02-19T15:02:57Z\",\r\n            \"end_date\": \"2023-02-21T15:02:59Z\",\r\n            \"athletes\":[\r\n              {    \r\n               \"events\": [\r\n                {\r\n                 \"code\":\"802\"\r\n                 },\r\n                 {\r\n                 \"code\":\"801\"\r\n                 }],\r\n            \"fed_id\": \"ESP9813111\",\r\n            \"first_name\": \"Miguel\",\r\n            \"last_name\": \"Gomes\",\r\n            \"country\": \"PT\",\r\n            \"gender\": \"M\",\r\n            \"year_of_birth\": 1995\r\n             }\r\n\r\n            ],\r\n            \"events\":[\r\n              {\r\n            \"rounds\": 5,\r\n            \"event_class\": \"5 STAR\",\r\n            \"name\": \"Wakeskate seixal\",\r\n            \"code\":\"801\"\r\n             },\r\n             {\r\n            \"rounds\": 5,\r\n            \"event_class\": \"5 STAR\",\r\n            \"name\": \"Wakeskate seixal 2\",\r\n            \"code\":\"802\"\r\n             }\r\n            ],\r\n               \"athlete_events\":[\r\n              {\r\n              \"division\": \"\",\r\n             \"entry_type\": \"IP\",\r\n            \"participation\": true,\r\n             \"real_category\": \"U100\",\r\n             \"category_in_competition\": \"U100\",\r\n             \"code\":\"802\"\r\n             },\r\n                 {\r\n              \"division\": \"\",\r\n             \"entry_type\": \"IP\",\r\n            \"participation\": true,\r\n             \"real_category\": \"U110\",\r\n             \"category_in_competition\": \"U110\",\r\n             \"code\":\"801\"\r\n             }\r\n            ],\r\n           \"officials\": [\r\n           {\r\n            \"iwwfid\": \"M00200\",\r\n            \"position\": \"Judge\",\r\n            \"first_name\": \"Miguel\",\r\n            \"last_name\": \"Milhazes\",\r\n            \"qualification\": \"WBJ1\",\r\n            \"country\": \"POR\",\r\n            \"region\": \"Europe\"\r\n           },\r\n           {\r\n            \"iwwfid\": \"M00131\",\r\n            \"position\": \"Judge\",\r\n            \"first_name\": \"Joaquim\",\r\n            \"last_name\": \"Fernandes\",\r\n            \"qualification\": \"WBJ2\",\r\n            \"country\": \"POR\",\r\n            \"region\": \"Europe\"\r\n           }\r\n\r\n\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1003,6 +999,37 @@
 						"api",
 						"create-all",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Competitions App",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{SERVER}}/api/competitions-calendar/?page=1",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"competitions-calendar",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
 					]
 				}
 			},

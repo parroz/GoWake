@@ -9,7 +9,7 @@ from rest_framework.decorators import action
 from .models import Competition, Event, Official, Athlete, AthleteEvent
 from .pagination import CompetitionsAppPagination
 from .serializers import CompetitionSerializer, EventSerializer, OfficialSerializer, AthleteSerializer, \
-    AthleteEventSerializer, UploadFromXml, CompetitionAppSerializer
+    AthleteEventSerializer, UploadFromXml, CompetitionAppSerializer, CompetitionsAppSerializer
 from rest_framework import permissions
 from rest_framework import viewsets
 from rest_framework import mixins
@@ -208,9 +208,9 @@ class EventAPIView(generics.RetrieveUpdateDestroyAPIView):
 class CompetitionsAppAPIView(generics.ListCreateAPIView):
     permission_classes = (permissions.DjangoModelPermissions,)
     queryset = Competition.objects.all()
-    serializer_class = CompetitionAppSerializer
+    serializer_class = CompetitionsAppSerializer
     filter_backends = [DjangoFilterBackend]
-    #pagination_class = CompetitionsAppPagination
+    # pagination_class = CompetitionsAppPagination
     filterset_fields = ['code', 'organizing_country']
 
     def get_queryset(self):
@@ -234,6 +234,12 @@ class CompetitionsAPIView(generics.ListCreateAPIView):
             raise ValidationError("This code already exist!")
 
         serializer.save(username=username)
+
+
+class CompetitionAppAPIView(generics.RetrieveAPIView):
+    permission_classes = (permissions.DjangoModelPermissions,)
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionAppSerializer
 
 
 class CompetitionAPIView(generics.RetrieveUpdateDestroyAPIView):
