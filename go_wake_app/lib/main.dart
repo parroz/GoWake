@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
               AppRoutes.HOME: (ctx) => const CustomNavigationDrawer(),
               AppRoutes.SETTINGS: (ctx) => const ConfigurationPage(),
               AppRoutes.COMPETITIONS: (ctx) => const CompetitionsCalendarPage(),
-              AppRoutes.COMPETITION_DETAIL: (ctx) => const CompetitionDetailPage(),
+
             },
           );}
            ));
