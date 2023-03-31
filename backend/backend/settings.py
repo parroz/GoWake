@@ -24,8 +24,8 @@ SECRET_KEY = 'django-insecure-kf%)-sdb0%#9z3qxt2*s!k5*jms8=gcgp1p2$vx8kcyhncpr6@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '10.0.2.2','127.0.0.1']
-#ALLOWED_HOSTS = ['localhost','https://gowake.daletech.pt']
+#ALLOWED_HOSTS = ['localhost', '10.0.2.2','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','https://gowake.daletech.pt']
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'account_app',
     'roles',
     'api',
+     'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -113,6 +116,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    'https://gowake.daletech.pt',
+]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
