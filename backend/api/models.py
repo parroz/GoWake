@@ -100,4 +100,84 @@ class Athlete(Base):
         return self.first_name + " " + self.last_name
 
 
+class MatrixHeatSystem(models.Model):
+    Riders = models.CharField(max_length=5, blank=True)
+    Q_Heats = models.CharField(max_length=5, blank=True)
+    LCQ_Heats = models.CharField(max_length=20, blank=True)
+    QrtFinal_Heats = models.CharField(max_length=20, blank=True)
+    SemiFinal_Heats = models.CharField(max_length=20, blank=True)
+    Final_Heats = models.CharField(max_length=20, blank=True)
 
+    Riders_Q_Heat1 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_Q_Heat1 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_Q_Heat1 = models.CharField(max_length=20, blank=True)
+    TopRidersToQrtFinal_Q_Heat1 = models.CharField(max_length=20, blank=True)
+    RemainingRidersToLCQ_Q_Heat1 = models.CharField(max_length=20, blank=True)
+
+    Riders_Q_Heat2 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_Q_Heat2 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_Q_Heat2 = models.CharField(max_length=20, blank=True)
+    TopRidersToQrtFinal_Q_Heat2 = models.CharField(max_length=20, blank=True)
+    RemainingRidersToLCQ_Q_Heat2 = models.CharField(max_length=20, blank=True)
+
+    Riders_Q_Heat3 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_Q_Heat3 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_Q_Heat3 = models.CharField(max_length=20, blank=True)
+    TopRidersToQrtFinal_Q_Heat3 = models.CharField(max_length=20, blank=True)
+    RemainingRidersToLCQ_Q_Heat3 = models.CharField(max_length=20, blank=True)
+
+    Riders_Q_Heat4 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_Q_Heat4 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_Q_Heat4 = models.CharField(max_length=20, blank=True)
+    TopRidersToQrtFinal_Q_Heat4 = models.CharField(max_length=20, blank=True)
+    RemainingRidersToLCQ_Q_Heat4 = models.CharField(max_length=20, blank=True)
+
+    Riders_Q_Heat5 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_Q_Heat5 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_Q_Heat5 = models.CharField(max_length=20, blank=True)
+    TopRidersToQrtFinal_Q_Heat5 = models.CharField(max_length=20, blank=True)
+    RemainingRidersToLCQ_Q_Heat5 = models.CharField(max_length=20, blank=True)
+
+    Riders_Q_Heat6 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_Q_Heat6 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_Q_Heat6 = models.CharField(max_length=20, blank=True)
+    TopRidersToQrtFinal_Q_Heat6 = models.CharField(max_length=20, blank=True)
+    RemainingRidersToLCQ_Q_Heat6 = models.CharField(max_length=20, blank=True)
+
+    Riders_LCQ_Heat1 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_LCQ_Heat1 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_LCQ_Heat1 = models.CharField(max_length=20, blank=True)
+    TopRidersToQrtFinal_LCQ_Heat1 = models.CharField(max_length=20, blank=True)
+
+    Riders_LCQ_Heat2 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_LCQ_Heat2 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_LCQ_Heat2 = models.CharField(max_length=20, blank=True)
+    TopRidersToQrtFinal_LCQ_Heat2 = models.CharField(max_length=20, blank=True)
+
+    Riders_LCQ_Heat3 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_LCQ_Heat3 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_LCQ_Heat3 = models.CharField(max_length=20, blank=True)
+    TopRidersToQrtFinal_LCQ_Heat3 = models.CharField(max_length=20, blank=True)
+
+    Riders_QrtFinal_Heat1 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_QrtFinal_Heat1 = models.CharField(max_length=5, blank=True)
+
+    Riders_QrtFinal_Heat2 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_QrtFinal_Heat2 = models.CharField(max_length=5, blank=True)
+
+    Riders_QrtFinal_Heat3 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_QrtFinal_Heat3 = models.CharField(max_length=5, blank=True)
+
+    Riders_QrtFinal_Heat4 = models.CharField(max_length=5, blank=True)
+    TopRidersToSemiFinal_QrtFinal_Heat4 = models.CharField(max_length=5, blank=True)
+
+    Riders_SemiFinal_Heat1 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_SemiFinal_Heat1 = models.CharField(max_length=5, blank=True)
+
+    Riders_SemiFinal_Heat2 = models.CharField(max_length=5, blank=True)
+    TopRidersToFinal_SemiFinal_Heat2 = models.CharField(max_length=5, blank=True)
+
+    Riders_Final_Heat1 = models.CharField(max_length=5, blank=True)
+
+    def __str__(self):
+        return "Rider: " + self.Riders

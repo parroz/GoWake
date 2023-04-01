@@ -6,10 +6,11 @@ from rest_framework.response import Response
 from rest_framework import generics, status
 from rest_framework.viewsets import ViewSet
 from rest_framework.decorators import action
-from .models import Competition, Event, Official, Athlete, AthleteEvent
+from .models import Competition, Event, Official, Athlete, AthleteEvent, MatrixHeatSystem
 from .pagination import CompetitionsAppPagination
 from .serializers import CompetitionSerializer, EventSerializer, OfficialSerializer, AthleteSerializer, \
-    AthleteEventSerializer, UploadFromXml, CompetitionAppSerializer, CompetitionsAppSerializer
+    AthleteEventSerializer, UploadFromXml, CompetitionAppSerializer, CompetitionsAppSerializer, \
+    MatrixHeatSystemSerializer
 from rest_framework import permissions
 from rest_framework import viewsets
 from rest_framework import mixins
@@ -269,3 +270,9 @@ def create_competition_from_xml(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MatrixHeatSystemAPIView(generics.ListCreateAPIView):
+    permission_classes = (permissions.DjangoModelPermissions,)
+    queryset = MatrixHeatSystem.objects.all()
+    serializer_class = MatrixHeatSystemSerializer

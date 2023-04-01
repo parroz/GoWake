@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'account_app',
     'roles',
     'api',
-     'corsheaders'
+    'corsheaders'
 ]
 
 MIDDLEWARE = [

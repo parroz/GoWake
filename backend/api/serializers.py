@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import Competition, Official, Athlete, Event, AthleteEvent
+from .models import Competition, Official, Athlete, Event, AthleteEvent, MatrixHeatSystem
 from rest_framework.serializers import Serializer, FileField
 from rest_framework.fields import CurrentUserDefault
 
@@ -132,3 +132,9 @@ class UploadFromXml(serializers.ModelSerializer):
             athlete_obj.events.set(events)
 
         return competition
+
+
+class MatrixHeatSystemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MatrixHeatSystem
+        fields = '__all__'
