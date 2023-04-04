@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:go_wake_app/models/competition.dart';
+import 'package:go_wake_app/models/competition_detail.dart';
 import 'package:go_wake_app/services/service_locator.dart';
 
 import '../api/api_service.dart';
@@ -43,10 +44,16 @@ class Services{
   Future<ResultCompetition> getCompetitions() async {
     final ApiService apiService = ApiService();
     final response = await  apiService.getCompetitions();
-    if (response.statusCode == 201) {
 
-    }
     return ResultCompetition.fromJson(jsonDecode(response.body));
+  }
+
+  Future<CompetitionDetail> getCompetitionDetail(String id) async {
+    final ApiService apiService = ApiService();
+    final response = await  apiService.getCompetitionDetail(id);
+
+    return CompetitionDetail.fromJson(jsonDecode(response.body));
+
   }
 
 }

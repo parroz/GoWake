@@ -12,10 +12,10 @@ from .views import (CompetitionsAPIView,
                     CompetitionAPIView,
                     EventsAPIView,
                     EventAPIView,
-                    OfficialsAPIView,
+                    OfficialsAPIView,MatrixHeatSystemAPIView,
                     OfficialAPIView,
                     AthletesAPIView, AthleteAPIView, AthleteEventAPIView, AthleteEventsAPIView,
-                    create_competition_from_xml, CompetitionsAppAPIView
+                    create_competition_from_xml, CompetitionsAppAPIView, CompetitionAppAPIView
 
                     )
 """
@@ -31,12 +31,13 @@ urlpatterns = [
     # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     #path('', api_home.as_view()), # localhost:8000/api/
+    path('matrix-heatsystem/', MatrixHeatSystemAPIView.as_view(), name='matrix-heatsystem'),
     path('create-all/', create_competition_from_xml, name='competition-create-all'),
     path('competition-create/', CompetitionsAPIView.as_view(), name='competition-create'),
     path('competitions/', CompetitionsAPIView.as_view(), name='competitions'),
     path('competitions/<int:pk>/', CompetitionAPIView.as_view(), name='competition'),
     path('competitions-calendar/', CompetitionsAppAPIView.as_view(), name='competitions-calendar'),
-
+    path('competition-app-detail/<int:pk>/', CompetitionAppAPIView.as_view(), name='competition-app-detail'),
 
     path('competition/<int:competition_pk>/events/', EventsAPIView.as_view(), name='competition_events'),
     path('competition/<int:competition_pk>/event/<int:event_pk>/', EventAPIView.as_view(), name='competition_event'),

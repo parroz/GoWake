@@ -40,4 +40,10 @@ class ApiService {
         Uri.parse('${Constants.URL_API}/api/competitions-calendar/'),
         headers: await getRequestHeaders());
   }
+
+  Future<Response> getCompetitionDetail(String id) async {
+    return await http.get(
+        Uri.parse('${Constants.URL_API}/api/competition-app-detail/$id'),
+        headers: await getRequestHeaders());
+  }
 }

@@ -5,5 +5,5 @@ class AppRoutes {
   static const REGISTER = '/register';
   static const SETTINGS = '/settings';
   static const COMPETITIONS = '/competitions';
-
+  static const COMPETITION_DETAIL = '/competitions_details';
 }
