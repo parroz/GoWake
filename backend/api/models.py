@@ -181,3 +181,30 @@ class MatrixHeatSystem(models.Model):
 
     def __str__(self):
         return "Rider: " + self.Riders
+
+
+class LeaderBoard(models.Model):
+    athlete = models.ForeignKey(Athlete, related_name='athletes_leaderboards',on_delete=models.CASCADE)
+    competition = models.ForeignKey(Competition, related_name='competition_leaderboards', on_delete=models.CASCADE)
+    events = models.ManyToManyField(AthleteEvent, related_name='events_leaderboard')
+
+    Q_Heat_number = models.CharField(max_length=5, blank=True)
+    Q_Starting_list = models.CharField(max_length=5, blank=True)
+    Q_1st_Judge_Last_name = models.CharField(max_length=5, blank=True)
+    Q_1st_judge_first_name = models.CharField(max_length=5, blank=True)
+    Q_1st_judge_iwwf_id = models.CharField(max_length=5, blank=True)
+    Q_2nd_Judge_Last_name = models.CharField(max_length=5, blank=True)
+    Q_2nd_judge_first_name = models.CharField(max_length=5, blank=True)
+    Q_2nd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
+    Q_3rd_Judge_Last_name = models.CharField(max_length=5, blank=True)
+    Q_3rd_judge_first_name = models.CharField(max_length=5, blank=True)
+    Q_3rd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
+    Q_1st_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
+    Q_2nd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
+    Q_3rd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
+    Q_1st_judge_Intensity_score = models.CharField(max_length=5, blank=True)
+    Q_2nd_judge_Intensity_score = models.CharField(max_length=5, blank=True)
+    Q_3rd_judge_Intensity_score = models.CharField(max_length=5, blank=True)
+    Q_1st_judge_Execution_score = models.CharField(max_length=5, blank=True)
+    Q_2nd_judge_Execution_score = models.CharField(max_length=5, blank=True)
+    Q_2nd_judge_Execution_score = models.CharField(max_length=5, blank=True)

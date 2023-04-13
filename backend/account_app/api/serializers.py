@@ -41,6 +41,12 @@ class RegistrationSerializer(serializers.ModelSerializer):
             'password': {'write_only': True}
         }
 
+    def validate_email(self, value):
+        if len(value) == 0:
+            raise serializers.ValidationError("This field may not be blank.")
+        else:
+            return value
+
     def save(self):
         password = self.validated_data['password']
         password2 = self.validated_data['password']
