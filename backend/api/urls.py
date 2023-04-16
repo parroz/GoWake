@@ -15,7 +15,7 @@ from .views import (CompetitionsAPIView,
                     OfficialsAPIView,MatrixHeatSystemAPIView,
                     OfficialAPIView,
                     AthletesAPIView, AthleteAPIView, AthleteEventAPIView, AthleteEventsAPIView,
-                    create_competition_from_xml, CompetitionsAppAPIView, CompetitionAppAPIView
+                    create_competition_from_xml, CompetitionsAppAPIView, CompetitionDetailAppAPIView
 
                     )
 """
@@ -37,7 +37,7 @@ urlpatterns = [
     path('competitions/', CompetitionsAPIView.as_view(), name='competitions'),
     path('competitions/<int:pk>/', CompetitionAPIView.as_view(), name='competition'),
     path('competitions-calendar/', CompetitionsAppAPIView.as_view(), name='competitions-calendar'),
-    path('competition-app-detail/<int:pk>/', CompetitionAppAPIView.as_view(), name='competition-app-detail'),
+    path('competition-app-detail/<int:pk>/', CompetitionDetailAppAPIView.as_view(), name='competition-app-detail'),
 
     path('competition/<int:competition_pk>/events/', EventsAPIView.as_view(), name='competition_events'),
     path('competition/<int:competition_pk>/event/<int:event_pk>/', EventAPIView.as_view(), name='competition_event'),

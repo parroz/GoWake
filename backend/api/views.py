@@ -237,7 +237,7 @@ class CompetitionsAPIView(generics.ListCreateAPIView):
         serializer.save(username=username)
 
 
-class CompetitionAppAPIView(generics.RetrieveAPIView):
+class CompetitionDetailAppAPIView(generics.RetrieveAPIView):
     permission_classes = (permissions.DjangoModelPermissions,)
     queryset = Competition.objects.all()
     serializer_class = CompetitionAppSerializer
