@@ -79,7 +79,7 @@ class AthleteEvent(Base):
         verbose_name_plural = 'AthleteEvents'
 
     def __str__(self):
-        return self.real_category + " - " + self.event.name
+        return "Real Cat " + self.real_category + " Cat in Comp " + self.category_in_competition +" - " + self.event.name
 
 
 class Athlete(Base):
@@ -90,6 +90,7 @@ class Athlete(Base):
     country = models.CharField(max_length=10)
     gender = models.CharField(max_length=1)
     year_of_birth = models.IntegerField()
+    ranking = models.IntegerField(default=0)
     events = models.ManyToManyField(AthleteEvent, related_name='events')
 
     class Meta:
@@ -192,10 +193,10 @@ class EventDescription(models.Model):
         return self.description
 
 
-class LeaderBoard(models.Model):
-    athlete = models.ForeignKey(Athlete, related_name='athletes_leaderboards', on_delete=models.CASCADE)
-    competition = models.ForeignKey(Competition, related_name='competition_leaderboards', on_delete=models.CASCADE)
-    events = models.ManyToManyField(AthleteEvent, related_name='events_leaderboard')
+class LeaderBoard(Base):
+    athlete = models.ForeignKey(Athlete, related_name='athlete_leaderboard', on_delete=models.CASCADE)
+    competition = models.ForeignKey(Competition, related_name='competition_leaderboard', on_delete=models.CASCADE)
+    event = models.ForeignKey(AthleteEvent, related_name='event_leaderboard', on_delete=models.CASCADE,null=True)
 
     Q_Heat_number = models.CharField(max_length=5, blank=True)
     Q_Starting_list = models.CharField(max_length=5, blank=True)

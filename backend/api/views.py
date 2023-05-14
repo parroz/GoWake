@@ -10,7 +10,7 @@ from .models import Competition, Event, Official, Athlete, AthleteEvent, MatrixH
 from .pagination import CompetitionsAppPagination
 from .serializers import CompetitionSerializer, EventSerializer, OfficialSerializer, AthleteSerializer, \
     AthleteEventSerializer, UploadFromXml, CompetitionAppSerializer, CompetitionsAppSerializer, \
-    MatrixHeatSystemSerializer
+    MatrixHeatSystemSerializer, GenerateHeatSystem, InsertAllSerializer
 from rest_framework import permissions
 from rest_framework import viewsets
 from rest_framework import mixins
@@ -260,6 +260,25 @@ class CompetitionAPIView(generics.RetrieveUpdateDestroyAPIView):
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def generate_heat_system(request):
+    serializer = GenerateHeatSystem(data=request.data, context={'request': request})
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def insert_all_view(request):
+    serializer = InsertAllSerializer(data=request.data, context={'request': request})
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
 
 
 @api_view(['POST'])

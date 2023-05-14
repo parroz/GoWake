@@ -12,10 +12,11 @@ from .views import (CompetitionsAPIView,
                     CompetitionAPIView,
                     EventsAPIView,
                     EventAPIView,
-                    OfficialsAPIView,MatrixHeatSystemAPIView,
+                    OfficialsAPIView, MatrixHeatSystemAPIView,
                     OfficialAPIView,
                     AthletesAPIView, AthleteAPIView, AthleteEventAPIView, AthleteEventsAPIView,
-                    create_competition_from_xml, CompetitionsAppAPIView, CompetitionDetailAppAPIView
+                    create_competition_from_xml, CompetitionsAppAPIView, CompetitionDetailAppAPIView,
+                    generate_heat_system, insert_all_view
 
                     )
 """
@@ -31,7 +32,9 @@ urlpatterns = [
     # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     #path('', api_home.as_view()), # localhost:8000/api/
+    path('generate-heatsystem/', generate_heat_system, name='generate-heatsystem'),
     path('matrix-heatsystem/', MatrixHeatSystemAPIView.as_view(), name='matrix-heatsystem'),
+    path('insert-all/', insert_all_view, name='insert-all'),
     path('create-all/', create_competition_from_xml, name='competition-create-all'),
     path('competition-create/', CompetitionsAPIView.as_view(), name='competition-create'),
     path('competitions/', CompetitionsAPIView.as_view(), name='competitions'),
