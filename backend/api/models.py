@@ -79,7 +79,7 @@ class AthleteEvent(Base):
         verbose_name_plural = 'AthleteEvents'
 
     def __str__(self):
-        return "Real Cat " + self.real_category + " Cat in Comp " + self.category_in_competition +" - " + self.event.name
+        return "Real Cat " + self.real_category + " Cat in Comp " + self.category_in_competition + " - " + self.event.name
 
 
 class Athlete(Base):
@@ -91,97 +91,108 @@ class Athlete(Base):
     gender = models.CharField(max_length=1)
     year_of_birth = models.IntegerField()
     ranking = models.IntegerField(default=0)
-    events = models.ManyToManyField(AthleteEvent, related_name='events')
+    ranking_points = models.IntegerField(default=0)
+    events = models.ManyToManyField(AthleteEvent, related_name='events', blank=True)
+    real_category = models.CharField(max_length=5, blank=True)
+    category_in_competition = models.CharField(max_length=10, blank=True)
 
     class Meta:
         verbose_name = 'Athlete'
         verbose_name_plural = 'Athletes'
 
     def __str__(self):
-        return self.first_name + " " + self.last_name
+        return self.first_name + " " + self.last_name + " Ranking: " + str(self.ranking)
 
 
 class MatrixHeatSystem(models.Model):
-    Riders = models.CharField(max_length=5, blank=True)
-    Q_Heats = models.CharField(max_length=5, blank=True)
-    LCQ_Heats = models.CharField(max_length=20, blank=True)
-    QrtFinal_Heats = models.CharField(max_length=20, blank=True)
-    SemiFinal_Heats = models.CharField(max_length=20, blank=True)
-    Final_Heats = models.CharField(max_length=20, blank=True)
+    Riders = models.IntegerField(null=True, default=0)
+    Q_Heats = models.IntegerField(null=True, default=0)
+    LCQ_Heats = models.IntegerField(null=True, default=0)
+    QrtFinal_Heats = models.IntegerField(null=True, default=0)
+    SemiFinal_Heats = models.IntegerField(null=True, default=0)
+    Final_Heats = models.IntegerField(null=True, default=0)
 
-    Riders_Q_Heat1 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_Q_Heat1 = models.CharField(max_length=5, blank=True)
+    Riders_Q_Heat1 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_Q_Heat1 = models.IntegerField(null=True, default=0)
     TopRidersToSemiFinal_Q_Heat1 = models.CharField(max_length=20, blank=True)
     TopRidersToQrtFinal_Q_Heat1 = models.CharField(max_length=20, blank=True)
     RemainingRidersToLCQ_Q_Heat1 = models.CharField(max_length=20, blank=True)
 
-    Riders_Q_Heat2 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_Q_Heat2 = models.CharField(max_length=5, blank=True)
+    Riders_Q_Heat2 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_Q_Heat2 = models.IntegerField(null=True, default=0)
     TopRidersToSemiFinal_Q_Heat2 = models.CharField(max_length=20, blank=True)
     TopRidersToQrtFinal_Q_Heat2 = models.CharField(max_length=20, blank=True)
     RemainingRidersToLCQ_Q_Heat2 = models.CharField(max_length=20, blank=True)
 
-    Riders_Q_Heat3 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_Q_Heat3 = models.CharField(max_length=5, blank=True)
+    Riders_Q_Heat3 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_Q_Heat3 = models.IntegerField(null=True, default=0)
     TopRidersToSemiFinal_Q_Heat3 = models.CharField(max_length=20, blank=True)
     TopRidersToQrtFinal_Q_Heat3 = models.CharField(max_length=20, blank=True)
     RemainingRidersToLCQ_Q_Heat3 = models.CharField(max_length=20, blank=True)
 
-    Riders_Q_Heat4 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_Q_Heat4 = models.CharField(max_length=5, blank=True)
+    Riders_Q_Heat4 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_Q_Heat4 = models.IntegerField(null=True, default=0)
     TopRidersToSemiFinal_Q_Heat4 = models.CharField(max_length=20, blank=True)
     TopRidersToQrtFinal_Q_Heat4 = models.CharField(max_length=20, blank=True)
     RemainingRidersToLCQ_Q_Heat4 = models.CharField(max_length=20, blank=True)
 
-    Riders_Q_Heat5 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_Q_Heat5 = models.CharField(max_length=5, blank=True)
+    Riders_Q_Heat5 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_Q_Heat5 = models.IntegerField(null=True, default=0)
     TopRidersToSemiFinal_Q_Heat5 = models.CharField(max_length=20, blank=True)
     TopRidersToQrtFinal_Q_Heat5 = models.CharField(max_length=20, blank=True)
     RemainingRidersToLCQ_Q_Heat5 = models.CharField(max_length=20, blank=True)
 
-    Riders_Q_Heat6 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_Q_Heat6 = models.CharField(max_length=5, blank=True)
+    Riders_Q_Heat6 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_Q_Heat6 = models.IntegerField(null=True, default=0)
     TopRidersToSemiFinal_Q_Heat6 = models.CharField(max_length=20, blank=True)
     TopRidersToQrtFinal_Q_Heat6 = models.CharField(max_length=20, blank=True)
     RemainingRidersToLCQ_Q_Heat6 = models.CharField(max_length=20, blank=True)
 
-    Riders_LCQ_Heat1 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_LCQ_Heat1 = models.CharField(max_length=5, blank=True)
+    Riders_LCQ_Heat1 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_LCQ_Heat1 = models.IntegerField(null=True, default=0)
     TopRidersToSemiFinal_LCQ_Heat1 = models.CharField(max_length=20, blank=True)
     TopRidersToQrtFinal_LCQ_Heat1 = models.CharField(max_length=20, blank=True)
 
-    Riders_LCQ_Heat2 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_LCQ_Heat2 = models.CharField(max_length=5, blank=True)
+    Riders_LCQ_Heat2 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_LCQ_Heat2 = models.IntegerField(null=True, default=0)
     TopRidersToSemiFinal_LCQ_Heat2 = models.CharField(max_length=20, blank=True)
     TopRidersToQrtFinal_LCQ_Heat2 = models.CharField(max_length=20, blank=True)
 
-    Riders_LCQ_Heat3 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_LCQ_Heat3 = models.CharField(max_length=5, blank=True)
+    Riders_LCQ_Heat3 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_LCQ_Heat3 = models.IntegerField(null=True, default=0)
     TopRidersToSemiFinal_LCQ_Heat3 = models.CharField(max_length=20, blank=True)
     TopRidersToQrtFinal_LCQ_Heat3 = models.CharField(max_length=20, blank=True)
 
-    Riders_QrtFinal_Heat1 = models.CharField(max_length=5, blank=True)
-    TopRidersToSemiFinal_QrtFinal_Heat1 = models.CharField(max_length=5, blank=True)
+    Riders_QrtFinal_Heat1 = models.IntegerField(null=True, default=0)
+    TopRidersToSemiFinal_QrtFinal_Heat1 = models.IntegerField(null=True, default=0)
 
-    Riders_QrtFinal_Heat2 = models.CharField(max_length=5, blank=True)
-    TopRidersToSemiFinal_QrtFinal_Heat2 = models.CharField(max_length=5, blank=True)
+    Riders_QrtFinal_Heat2 = models.IntegerField(null=True, default=0)
+    TopRidersToSemiFinal_QrtFinal_Heat2 = models.IntegerField(null=True, default=0)
 
-    Riders_QrtFinal_Heat3 = models.CharField(max_length=5, blank=True)
-    TopRidersToSemiFinal_QrtFinal_Heat3 = models.CharField(max_length=5, blank=True)
+    Riders_QrtFinal_Heat3 = models.IntegerField(null=True, default=0)
+    TopRidersToSemiFinal_QrtFinal_Heat3 = models.IntegerField(null=True, default=0)
 
-    Riders_QrtFinal_Heat4 = models.CharField(max_length=5, blank=True)
-    TopRidersToSemiFinal_QrtFinal_Heat4 = models.CharField(max_length=5, blank=True)
+    Riders_QrtFinal_Heat4 = models.IntegerField(null=True, default=0)
+    TopRidersToSemiFinal_QrtFinal_Heat4 = models.IntegerField(null=True, default=0)
 
-    Riders_SemiFinal_Heat1 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_SemiFinal_Heat1 = models.CharField(max_length=5, blank=True)
+    Riders_SemiFinal_Heat1 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_SemiFinal_Heat1 = models.IntegerField(null=True, default=0)
 
-    Riders_SemiFinal_Heat2 = models.CharField(max_length=5, blank=True)
-    TopRidersToFinal_SemiFinal_Heat2 = models.CharField(max_length=5, blank=True)
+    Riders_SemiFinal_Heat2 = models.IntegerField(null=True, default=0)
+    TopRidersToFinal_SemiFinal_Heat2 = models.IntegerField(null=True, default=0)
 
-    Riders_Final_Heat1 = models.CharField(max_length=5, blank=True)
+    Riders_Final_Heat1 = models.IntegerField(null=True, default=0)
 
     def __str__(self):
-        return "Rider: " + self.Riders
+        return "Rider: " + str(self.Riders)
+
+
+class Categorie(models.Model):
+    description = models.CharField(max_length=20, blank=True)
+    code = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.description
 
 
 class EventDescription(models.Model):
@@ -196,19 +207,22 @@ class EventDescription(models.Model):
 class LeaderBoard(Base):
     athlete = models.ForeignKey(Athlete, related_name='athlete_leaderboard', on_delete=models.CASCADE)
     competition = models.ForeignKey(Competition, related_name='competition_leaderboard', on_delete=models.CASCADE)
-    event = models.ForeignKey(AthleteEvent, related_name='event_leaderboard', on_delete=models.CASCADE,null=True)
-
+    athlete_gender = models.CharField(max_length=1, blank=True)
+    athlete_category_in_competition = models.CharField(max_length=10, blank=True)
+    ranking = models.IntegerField(default=0)
+    Q_validated = models.BooleanField(default=False, blank=True)
+    round = models.CharField(max_length=10, blank=True)
     Q_Heat_number = models.CharField(max_length=5, blank=True)
     Q_Starting_list = models.CharField(max_length=5, blank=True)
-    Q_1st_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    Q_1st_judge_first_name = models.CharField(max_length=5, blank=True)
-    Q_1st_judge_iwwf_id = models.CharField(max_length=5, blank=True)
-    Q_2nd_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    Q_2nd_judge_first_name = models.CharField(max_length=5, blank=True)
-    Q_2nd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
-    Q_3rd_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    Q_3rd_judge_first_name = models.CharField(max_length=5, blank=True)
-    Q_3rd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
+    Q_1st_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    Q_1st_judge_first_name = models.CharField(max_length=20, blank=True)
+    Q_1st_judge_iwwf_id = models.CharField(max_length=7, blank=True)
+    Q_2nd_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    Q_2nd_judge_first_name = models.CharField(max_length=20, blank=True)
+    Q_2nd_judge_iwwf_id = models.CharField(max_length=7, blank=True)
+    Q_3rd_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    Q_3rd_judge_first_name = models.CharField(max_length=20, blank=True)
+    Q_3rd_judge_iwwf_id = models.CharField(max_length=7, blank=True)
     Q_1st_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
     Q_2nd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
     Q_3rd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
@@ -252,17 +266,18 @@ class LeaderBoard(Base):
     Q_global_pontuation = models.FloatField(default=0)
     Q_placement = models.IntegerField(default=0)
 
+    LCQ_validated = models.BooleanField(default=False, blank=True)
     LCQ_Heat_number = models.IntegerField(default=0)
     LCQ_Starting_list = models.IntegerField(default=0)
-    LCQ_1st_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    LCQ_1st_judge_first_name = models.CharField(max_length=5, blank=True)
-    LCQ_1st_judge_iwwf_id = models.CharField(max_length=5, blank=True)
-    LCQ_2nd_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    LCQ_2nd_judge_first_name = models.CharField(max_length=5, blank=True)
-    LCQ_2nd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
-    LCQ_3rd_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    LCQ_3rd_judge_first_name = models.CharField(max_length=5, blank=True)
-    LCQ_3rd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
+    LCQ_1st_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    LCQ_1st_judge_first_name = models.CharField(max_length=20, blank=True)
+    LCQ_1st_judge_iwwf_id = models.CharField(max_length=7, blank=True)
+    LCQ_2nd_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    LCQ_2nd_judge_first_name = models.CharField(max_length=20, blank=True)
+    LCQ_2nd_judge_iwwf_id = models.CharField(max_length=7, blank=True)
+    LCQ_3rd_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    LCQ_3rd_judge_first_name = models.CharField(max_length=20, blank=True)
+    LCQ_3rd_judge_iwwf_id = models.CharField(max_length=7, blank=True)
     LCQ_1st_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
     LCQ_2nd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
     LCQ_3rd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
@@ -308,17 +323,18 @@ class LeaderBoard(Base):
     LCQ_global_pontuation = models.FloatField(default=0)
     LCQ_placement = models.IntegerField(default=0)
 
+    QrtFinal_validated = models.BooleanField(default=False, blank=True)
     QrtFinal_Heat_number = models.IntegerField(default=0)
     QrtFinal_Starting_list = models.IntegerField(default=0)
-    QrtFinal_1st_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    QrtFinal_1st_judge_first_name = models.CharField(max_length=5, blank=True)
-    QrtFinal_1st_judge_iwwf_id = models.CharField(max_length=5, blank=True)
-    QrtFinal_2nd_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    QrtFinal_2nd_judge_first_name = models.CharField(max_length=5, blank=True)
-    QrtFinal_2nd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
-    QrtFinal_3rd_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    QrtFinal_3rd_judge_first_name = models.CharField(max_length=5, blank=True)
-    QrtFinal_3rd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
+    QrtFinal_1st_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    QrtFinal_1st_judge_first_name = models.CharField(max_length=20, blank=True)
+    QrtFinal_1st_judge_iwwf_id = models.CharField(max_length=7, blank=True)
+    QrtFinal_2nd_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    QrtFinal_2nd_judge_first_name = models.CharField(max_length=20, blank=True)
+    QrtFinal_2nd_judge_iwwf_id = models.CharField(max_length=7, blank=True)
+    QrtFinal_3rd_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    QrtFinal_3rd_judge_first_name = models.CharField(max_length=20, blank=True)
+    QrtFinal_3rd_judge_iwwf_id = models.CharField(max_length=7, blank=True)
     QrtFinal_1st_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
     QrtFinal_2nd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
     QrtFinal_3rd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
@@ -362,17 +378,18 @@ class LeaderBoard(Base):
     QrtFinal_global_pontuation = models.FloatField(default=0)
     QrtFinal_placement = models.IntegerField(default=0)
 
+    SemiFinal_validated = models.BooleanField(default=False, blank=True)
     SemiFinal_Heat_number = models.IntegerField(default=0)
     SemiFinal_Starting_list = models.IntegerField(default=0)
-    SemiFinal_1st_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    SemiFinal_1st_judge_first_name = models.CharField(max_length=5, blank=True)
-    SemiFinal_1st_judge_iwwf_id = models.CharField(max_length=5, blank=True)
-    SemiFinal_2nd_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    SemiFinal_2nd_judge_first_name = models.CharField(max_length=5, blank=True)
-    SemiFinal_2nd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
-    SemiFinal_3rd_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    SemiFinal_3rd_judge_first_name = models.CharField(max_length=5, blank=True)
-    SemiFinal_3rd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
+    SemiFinal_1st_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    SemiFinal_1st_judge_first_name = models.CharField(max_length=20, blank=True)
+    SemiFinal_1st_judge_iwwf_id = models.CharField(max_length=7, blank=True)
+    SemiFinal_2nd_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    SemiFinal_2nd_judge_first_name = models.CharField(max_length=20, blank=True)
+    SemiFinal_2nd_judge_iwwf_id = models.CharField(max_length=7, blank=True)
+    SemiFinal_3rd_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    SemiFinal_3rd_judge_first_name = models.CharField(max_length=20, blank=True)
+    SemiFinal_3rd_judge_iwwf_id = models.CharField(max_length=7, blank=True)
     SemiFinal_1st_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
     SemiFinal_2nd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
     SemiFinal_3rd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
@@ -416,17 +433,18 @@ class LeaderBoard(Base):
     SemiFinal_global_pontuation = models.FloatField(default=0)
     SemiFinal_placement = models.IntegerField(default=0)
 
+    Final_validated = models.BooleanField(default=False, blank=True)
     Final_Heat_number = models.IntegerField(default=0)
     Final_Starting_list = models.IntegerField(default=0)
-    Final_1st_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    Final_1st_judge_first_name = models.CharField(max_length=5, blank=True)
-    Final_1st_judge_iwwf_id = models.CharField(max_length=5, blank=True)
-    Final_2nd_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    Final_2nd_judge_first_name = models.CharField(max_length=5, blank=True)
-    Final_2nd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
-    Final_3rd_Judge_Last_name = models.CharField(max_length=5, blank=True)
-    Final_3rd_judge_first_name = models.CharField(max_length=5, blank=True)
-    Final_3rd_judge_iwwf_id = models.CharField(max_length=5, blank=True)
+    Final_1st_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    Final_1st_judge_first_name = models.CharField(max_length=20, blank=True)
+    Final_1st_judge_iwwf_id = models.CharField(max_length=7, blank=True)
+    Final_2nd_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    Final_2nd_judge_first_name = models.CharField(max_length=20, blank=True)
+    Final_2nd_judge_iwwf_id = models.CharField(max_length=7, blank=True)
+    Final_3rd_Judge_Last_name = models.CharField(max_length=30, blank=True)
+    Final_3rd_judge_first_name = models.CharField(max_length=20, blank=True)
+    Final_3rd_judge_iwwf_id = models.CharField(max_length=7, blank=True)
     Final_1st_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
     Final_2nd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
     Final_3rd_judge_atlhete_front_foot = models.CharField(max_length=5, blank=True)
@@ -470,3 +488,7 @@ class LeaderBoard(Base):
     Final_global_pontuation = models.FloatField(default=0)
     Final_placement = models.IntegerField(default=0)
     ranking_event_final_points = models.FloatField(default=0)
+
+    def __str__(self):
+        return self.athlete_gender + " " + self.athlete_category_in_competition \
+               + " Q_Heat_number " + self.Q_Heat_number + " Q_Starting_list " + self.Q_Starting_list

@@ -16,7 +16,7 @@ from .views import (CompetitionsAPIView,
                     OfficialAPIView,
                     AthletesAPIView, AthleteAPIView, AthleteEventAPIView, AthleteEventsAPIView,
                     create_competition_from_xml, CompetitionsAppAPIView, CompetitionDetailAppAPIView,
-                    generate_heat_system, insert_all_view
+                    generate_heat_system, insert_all_view,LeaderBoardsAPIView,ladder_system,LeaderBoardAPIView
 
                     )
 """
@@ -32,6 +32,9 @@ urlpatterns = [
     # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     #path('', api_home.as_view()), # localhost:8000/api/
+    path('ladder-system/', ladder_system, name='ladder-heatsystem'),
+    path('competition/<int:competition_pk>/leaderboard/<int:leaderboard_pk>/', LeaderBoardAPIView.as_view(), name='competition_leaderboard'),
+    path('competition/<int:competition_pk>/leaderboards/', LeaderBoardsAPIView.as_view(), name='competition_leaderboards'),
     path('generate-heatsystem/', generate_heat_system, name='generate-heatsystem'),
     path('matrix-heatsystem/', MatrixHeatSystemAPIView.as_view(), name='matrix-heatsystem'),
     path('insert-all/', insert_all_view, name='insert-all'),
