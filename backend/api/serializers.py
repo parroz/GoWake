@@ -166,11 +166,21 @@ class GenerateHeatSystem(serializers.ModelSerializer):
             print('Female qtd ' + str(len(athletes_female)))
 
             print("Generate Female")
-            start_position = 1
+            start_position = 0
+            heat_count = 0
+
             if len(athletes_female) > 0:
                 heat_system_female = MatrixHeatSystem.objects.get(Riders=len(athletes_female))
                 print(heat_system_female)
+                riders_q_heat_list = [True, True,
+                                      True, True, True
+                    , True]
+                heat = heat_system_female.Q_Heats
+                if int(heat_system_female.Q_Heats) > 1:
+                    heat_count = heat_system_female.Riders_Q_Heat1
+                    heat = 1
                 for athlete in athletes_female:
+                    start_position += 1
                     leader_board = LeaderBoard()
                     leader_board.athlete = athlete
                     leader_board.username = user
@@ -180,14 +190,43 @@ class GenerateHeatSystem(serializers.ModelSerializer):
                     leader_board.athlete_category_in_competition = athlete.category_in_competition
                     leader_board.Q_Heat_number = heat_system_female.Q_Heats
                     leader_board.Q_Starting_list = start_position
-                    start_position += 1
                     leader_board.save()
+                    if int(heat_system_female.Q_Heats) > 1 and riders_q_heat_list[0] and start_position == heat_count:
+                        heat += 1
+                        start_position = 0
+                        heat_count = heat_system_female.Riders_Q_Heat2
+                        riders_q_heat_list[0] = False
+                        print("Riders_Q_Heat1")
+                    if int(heat_system_female.Q_Heats) > 1 and riders_q_heat_list[1] and start_position == heat_count:
+                        heat += 1
+                        start_position = 0
+                        heat_count = heat_system_female.Riders_Q_Heat3
+                        riders_q_heat_list[1] = False
+                        print("Riders_Q_Heat2")
+                    if int(heat_system_female.Q_Heats) > 1 and riders_q_heat_list[2] and start_position == heat_count:
+                        heat += 1
+                        start_position = 0
+                        heat_count = heat_system_female.Riders_Q_Heat4
+                        riders_q_heat_list[2] = False
+                        print("Riders_Q_Heat3")
+                    if int(heat_system_female.Q_Heats) > 1 and riders_q_heat_list[3] and start_position == heat_count:
+                        heat += 1
+                        start_position = 0
+                        heat_count = heat_system_female.Riders_Q_Heat5
+                        riders_q_heat_list[3] = False
+                        print("Riders_Q_Heat4")
+                    if int(heat_system_female.Q_Heats) > 1 and riders_q_heat_list[4] and start_position == heat_count:
+                        heat += 1
+                        start_position = 0
+                        heat_count = heat_system_female.Riders_Q_Heat6
+                        riders_q_heat_list[4] = False
+                        print("Riders_Q_Heat5")
 
             athletes_male = Athlete.objects.filter(category_in_competition=athlete_event.category_in_competition,
                                                    gender='M')
             athletes_male = get_ranking(athletes_male)
 
-            print('Male qtd' + str(len(athletes_male)))
+            print('Male qtd ' + str(len(athletes_male)))
             print("Generate Male")
             start_position = 0
             heat_count = 0
@@ -198,8 +237,11 @@ class GenerateHeatSystem(serializers.ModelSerializer):
                                       True, True, True
                     , True]
                 print(heat_system_male)
+                heat = heat_system_male.Q_Heats
+                print('heat ' + str(heat))
                 if int(heat_system_male.Q_Heats) > 1:
                     heat_count = heat_system_male.Riders_Q_Heat1
+                    heat = 1
                 for athlete in athletes_male:
                     start_position += 1
                     leader_board = LeaderBoard()
@@ -210,34 +252,41 @@ class GenerateHeatSystem(serializers.ModelSerializer):
                     leader_board.ranking = athlete.ranking
                     leader_board.athlete_gender = athlete.gender
                     leader_board.athlete_category_in_competition = athlete.category_in_competition
-                    leader_board.Q_Heat_number = heat_system_male.Q_Heats
-
+                    leader_board.Q_Heat_number = heat
+                    print('heat ' + str(heat))
                     leader_board.Q_Starting_list = start_position
 
-                    print('start_position' + str(start_position))
-                    print('heat_count' + str(heat_count))
+                    print('start_position ' + str(start_position))
+                    print('heat_count ' + str(heat_count))
+                    print('heat_system_male.Q_Heats ' + str(heat_system_male.Q_Heats))
+
                     leader_board.save()
                     if int(heat_system_male.Q_Heats) > 1 and riders_q_heat_list[0] and start_position == heat_count:
+                        heat += 1
                         start_position = 0
                         heat_count = heat_system_male.Riders_Q_Heat2
                         riders_q_heat_list[0] = False
                         print("Riders_Q_Heat1")
                     if int(heat_system_male.Q_Heats) > 1 and riders_q_heat_list[1] and start_position == heat_count:
+                        heat += 1
                         start_position = 0
                         heat_count = heat_system_male.Riders_Q_Heat3
                         riders_q_heat_list[1] = False
                         print("Riders_Q_Heat2")
                     if int(heat_system_male.Q_Heats) > 1 and riders_q_heat_list[2] and start_position == heat_count:
+                        heat += 1
                         start_position = 0
                         heat_count = heat_system_male.Riders_Q_Heat4
                         riders_q_heat_list[2] = False
                         print("Riders_Q_Heat3")
                     if int(heat_system_male.Q_Heats) > 1 and riders_q_heat_list[3] and start_position == heat_count:
+                        heat += 1
                         start_position = 0
                         heat_count = heat_system_male.Riders_Q_Heat5
                         riders_q_heat_list[3] = False
                         print("Riders_Q_Heat4")
                     if int(heat_system_male.Q_Heats) > 1 and riders_q_heat_list[4] and start_position == heat_count:
+                        heat += 1
                         start_position = 0
                         heat_count = heat_system_male.Riders_Q_Heat6
                         riders_q_heat_list[4] = False

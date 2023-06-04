@@ -178,75 +178,171 @@ class LeaderBoardsAPIView(generics.ListAPIView):
 
 
 def score_qlf(data):
-    data['Q_global_Intensity_score'] = round((data['Q_1st_judge_Intensity_score'] + data['Q_2nd_judge_Intensity_score'] + data['Q_3rd_judge_Intensity_score']) / 3, 1)
-    data['Q_global_execution_score'] = round((data['Q_1st_judge_Execution_score'] + data['Q_2nd_judge_Execution_score'] + data['Q_3rd_judge_Execution_score']) / 3, 1)
-    data['Q_global_composition_score'] = round((data['Q_1st_judge_Composition_score'] + data['Q_2nd_judge_Composition_score'] + data['Q_3rd_judge_Composition_score']) / 3, 1)
-    data['Q_1st_judge_global_score'] = round((data['Q_1st_judge_Intensity_score'] + data['Q_1st_judge_Execution_score'] + data['Q_1st_judge_Composition_score']) / 3, 1)
-    data['Q_2nd_judge_global_score'] = round((data['Q_2nd_judge_Intensity_score'] + data['Q_2nd_judge_Execution_score'] + data['Q_2nd_judge_Composition_score']) / 3, 1)
-    data['Q_3rd_judge_global_score'] = round((data['Q_3rd_judge_Intensity_score'] + data['Q_3rd_judge_Execution_score'] + data['Q_3rd_judge_Composition_score']) / 3, 1)
-    data['Q_global_score'] = round((data['Q_1st_judge_global_score'] + data['Q_2nd_judge_global_score'] + data['Q_3rd_judge_global_score']) / 3, 1)
+    data['Q_global_Intensity_score'] = round((data['Q_1st_judge_Intensity_score'] + data[
+        'Q_2nd_judge_Intensity_score'] + data['Q_3rd_judge_Intensity_score']) / 3, 1)
+
+    data['Q_global_execution_score'] = round((data['Q_1st_judge_Execution_score'] + data[
+        'Q_2nd_judge_Execution_score'] + data['Q_3rd_judge_Execution_score']) / 3, 1)
+
+    data['Q_global_composition_score'] = round((data['Q_1st_judge_Composition_score'] + data[
+        'Q_2nd_judge_Composition_score'] + data['Q_3rd_judge_Composition_score']) / 3, 1)
+
+    data['Q_1st_judge_global_score'] = round((data['Q_1st_judge_Intensity_score'] + data[
+        'Q_1st_judge_Execution_score'] + data['Q_1st_judge_Composition_score']) / 3, 1)
+
+    data['Q_2nd_judge_global_score'] = round((data['Q_2nd_judge_Intensity_score'] + data[
+        'Q_2nd_judge_Execution_score'] + data['Q_2nd_judge_Composition_score']) / 3, 1)
+
+    data['Q_3rd_judge_global_score'] = round((data['Q_3rd_judge_Intensity_score'] + data[
+        'Q_3rd_judge_Execution_score'] + data['Q_3rd_judge_Composition_score']) / 3, 1)
+
+    data['Q_global_score'] = round(
+        (data['Q_1st_judge_global_score'] + data['Q_2nd_judge_global_score'] + data['Q_3rd_judge_global_score']) / 3, 1)
     data['Q_global_Intensity_pontuation'] = round(data['Q_global_Intensity_score'] * 3.34, 1)
     data['Q_global_execution_pontuation'] = round(data['Q_global_execution_score'] * 3.33, 1)
     data['Q_global_composition_pontuation'] = round(data['Q_global_composition_score'] * 3.33, 1)
-    data['Q_global_pontuation'] = round(data['Q_global_Intensity_pontuation'] + data['Q_global_execution_pontuation'] + data['Q_global_composition_pontuation'], 1)
+
+    data['Q_global_pontuation'] = round(
+        data['Q_global_Intensity_pontuation'] + data['Q_global_execution_pontuation'] + data[
+            'Q_global_composition_pontuation'], 1)
 
     return data
+
+
 def score_lcq(data):
-    data['LCQ_global_Intensity_score'] = round((data['LCQ_1st_judge_Intensity_score'] + data['LCQ_2nd_judge_Intensity_score'] + data['LCQ_3rd_judge_Intensity_score']) / 3, 1)
-    data['LCQ_global_execution_score'] = round((data['LCQ_1st_judge_Execution_score'] + data['LCQ_2nd_judge_Execution_score'] + data['LCQ_3rd_judge_Execution_score']) / 3, 1)
-    data['LCQ_global_composition_score'] = round((data['LCQ_1st_judge_Composition_score'] + data['LCQ_2nd_judge_Composition_score'] + data['LCQ_3rd_judge_Composition_score']) / 3, 1)
-    data['LCQ_1st_judge_global_score'] = round((data['LCQ_1st_judge_Intensity_score'] + data['LCQ_1st_judge_Execution_score'] + data['LCQ_1st_judge_Composition_score']) / 3, 1)
-    data['LCQ_2nd_judge_global_score'] = round((data['LCQ_2nd_judge_Intensity_score'] + data['LCQ_2nd_judge_Execution_score'] + data['LCQ_2nd_judge_Composition_score']) / 3, 1)
-    data['LCQ_3rd_judge_global_score'] = round((data['LCQ_3rd_judge_Intensity_score'] + data['LCQ_3rd_judge_Execution_score'] + data['LCQ_3rd_judge_Composition_score']) / 3, 1)
-    data['LCQ_global_score'] = round((data['LCQ_1st_judge_global_score'] + data['LCQ_2nd_judge_global_score'] + data['LCQ_3rd_judge_global_score']) / 3, 1)
+    data['LCQ_global_Intensity_score'] = round((data['LCQ_1st_judge_Intensity_score'] + data[
+        'LCQ_2nd_judge_Intensity_score'] + data['LCQ_3rd_judge_Intensity_score']) / 3, 1)
+    data['LCQ_global_execution_score'] = round((data['LCQ_1st_judge_Execution_score'] + data[
+        'LCQ_2nd_judge_Execution_score'] + data['LCQ_3rd_judge_Execution_score']) / 3, 1)
+    data['LCQ_global_composition_score'] = round((data['LCQ_1st_judge_Composition_score'] + data[
+        'LCQ_2nd_judge_Composition_score'] + data['LCQ_3rd_judge_Composition_score']) / 3, 1)
+    data['LCQ_1st_judge_global_score'] = round((data['LCQ_1st_judge_Intensity_score'] + data[
+        'LCQ_1st_judge_Execution_score'] + data['LCQ_1st_judge_Composition_score']) / 3, 1)
+    data['LCQ_2nd_judge_global_score'] = round((data['LCQ_2nd_judge_Intensity_score'] + data[
+        'LCQ_2nd_judge_Execution_score'] + data['LCQ_2nd_judge_Composition_score']) / 3, 1)
+    data['LCQ_3rd_judge_global_score'] = round((data['LCQ_3rd_judge_Intensity_score'] + data[
+        'LCQ_3rd_judge_Execution_score'] + data['LCQ_3rd_judge_Composition_score']) / 3, 1)
+    data['LCQ_global_score'] = round((data['LCQ_1st_judge_global_score'] + data['LCQ_2nd_judge_global_score'] + data[
+        'LCQ_3rd_judge_global_score']) / 3, 1)
     data['LCQ_global_Intensity_pontuation'] = round(data['LCQ_global_Intensity_score'] * 3.34, 1)
     data['LCQ_global_execution_pontuation'] = round(data['LCQ_global_execution_score'] * 3.33, 1)
     data['LCQ_global_composition_pontuation'] = round(data['LCQ_global_composition_score'] * 3.33, 1)
-    data['LCQ_global_pontuation'] = round(data['LCQ_global_Intensity_pontuation'] + data['LCQ_global_execution_pontuation'] + data['LCQ_global_composition_pontuation'], 1)
+    data['LCQ_global_pontuation'] = round(
+        data['LCQ_global_Intensity_pontuation'] + data['LCQ_global_execution_pontuation'] + data[
+            'LCQ_global_composition_pontuation'], 1)
 
     return data
+
+
 def score_qrt_final(data):
-    data['QrtFinal_global_Intensity_score'] = round((data['QrtFinal_1st_judge_Intensity_score'] + data['QrtFinal_2nd_judge_Intensity_score'] + data['QrtFinal_3rd_judge_Intensity_score']) / 3, 1)
-    data['QrtFinal_global_execution_score'] = round((data['QrtFinal_1st_judge_Execution_score'] + data['QrtFinal_2nd_judge_Execution_score'] + data['QrtFinal_3rd_judge_Execution_score']) / 3, 1)
-    data['QrtFinal_global_composition_score'] = round((data['QrtFinal_1st_judge_Composition_score'] + data['QrtFinal_2nd_judge_Composition_score'] + data['QrtFinal_3rd_judge_Composition_score']) / 3, 1)
-    data['QrtFinal_1st_judge_global_score'] = round((data['QrtFinal_1st_judge_Intensity_score'] + data['QrtFinal_1st_judge_Execution_score'] + data['QrtFinal_1st_judge_Composition_score']) / 3, 1)
-    data['QrtFinal_2nd_judge_global_score'] = round((data['QrtFinal_2nd_judge_Intensity_score'] + data['QrtFinal_2nd_judge_Execution_score'] + data['QrtFinal_2nd_judge_Composition_score']) / 3, 1)
-    data['QrtFinal_3rd_judge_global_score'] = round((data['QrtFinal_3rd_judge_Intensity_score'] + data['QrtFinal_3rd_judge_Execution_score'] + data['QrtFinal_3rd_judge_Composition_score']) / 3, 1)
-    data['QrtFinal_global_score'] = round((data['QrtFinal_1st_judge_global_score'] + data['QrtFinal_2nd_judge_global_score'] + data['QrtFinal_3rd_judge_global_score']) / 3, 1)
+    data['QrtFinal_global_Intensity_score'] = round((data['QrtFinal_1st_judge_Intensity_score'] + data[
+        'QrtFinal_2nd_judge_Intensity_score'] + data['QrtFinal_3rd_judge_Intensity_score']) / 3, 1)
+    data['QrtFinal_global_execution_score'] = round((data['QrtFinal_1st_judge_Execution_score'] + data[
+        'QrtFinal_2nd_judge_Execution_score'] + data['QrtFinal_3rd_judge_Execution_score']) / 3, 1)
+    data['QrtFinal_global_composition_score'] = round((data['QrtFinal_1st_judge_Composition_score'] + data[
+        'QrtFinal_2nd_judge_Composition_score'] + data['QrtFinal_3rd_judge_Composition_score']) / 3, 1)
+    data['QrtFinal_1st_judge_global_score'] = round((data['QrtFinal_1st_judge_Intensity_score'] + data[
+        'QrtFinal_1st_judge_Execution_score'] + data['QrtFinal_1st_judge_Composition_score']) / 3, 1)
+    data['QrtFinal_2nd_judge_global_score'] = round((data['QrtFinal_2nd_judge_Intensity_score'] + data[
+        'QrtFinal_2nd_judge_Execution_score'] + data['QrtFinal_2nd_judge_Composition_score']) / 3, 1)
+    data['QrtFinal_3rd_judge_global_score'] = round((data['QrtFinal_3rd_judge_Intensity_score'] + data[
+        'QrtFinal_3rd_judge_Execution_score'] + data['QrtFinal_3rd_judge_Composition_score']) / 3, 1)
+    data['QrtFinal_global_score'] = round((data['QrtFinal_1st_judge_global_score'] + data[
+        'QrtFinal_2nd_judge_global_score'] + data['QrtFinal_3rd_judge_global_score']) / 3, 1)
     data['QrtFinal_global_Intensity_pontuation'] = round(data['QrtFinal_global_Intensity_score'] * 3.34, 1)
     data['QrtFinal_global_execution_pontuation'] = round(data['QrtFinal_global_execution_score'] * 3.33, 1)
     data['QrtFinal_global_composition_pontuation'] = round(data['QrtFinal_global_composition_score'] * 3.33, 1)
-    data['QrtFinal_global_pontuation'] = round(data['QrtFinal_global_Intensity_pontuation'] + data['QrtFinal_global_execution_pontuation'] + data['QrtFinal_global_composition_pontuation'], 1)
+    data['QrtFinal_global_pontuation'] = round(
+        data['QrtFinal_global_Intensity_pontuation'] + data['QrtFinal_global_execution_pontuation'] + data[
+            'QrtFinal_global_composition_pontuation'], 1)
 
     return data
+
+
 def score_semi_final(data):
-    data['SemiFinal_global_Intensity_score'] = round((data['SemiFinal_1st_judge_Intensity_score'] + data['SemiFinal_2nd_judge_Intensity_score'] + data['SemiFinal_3rd_judge_Intensity_score']) / 3, 1)
-    data['SemiFinal_global_execution_score'] = round((data['SemiFinal_1st_judge_Execution_score'] + data['SemiFinal_2nd_judge_Execution_score'] + data['SemiFinal_3rd_judge_Execution_score']) / 3, 1)
-    data['SemiFinal_global_composition_score'] = round((data['SemiFinal_1st_judge_Composition_score'] + data['SemiFinal_2nd_judge_Composition_score'] + data['SemiFinal_3rd_judge_Composition_score']) / 3, 1)
-    data['SemiFinal_1st_judge_global_score'] = round((data['SemiFinal_1st_judge_Intensity_score'] + data['SemiFinal_1st_judge_Execution_score'] + data['SemiFinal_1st_judge_Composition_score']) / 3, 1)
-    data['SemiFinal_2nd_judge_global_score'] = round((data['SemiFinal_2nd_judge_Intensity_score'] + data['SemiFinal_2nd_judge_Execution_score'] + data['SemiFinal_2nd_judge_Composition_score']) / 3, 1)
-    data['SemiFinal_3rd_judge_global_score'] = round((data['SemiFinal_3rd_judge_Intensity_score'] + data['SemiFinal_3rd_judge_Execution_score'] + data['SemiFinal_3rd_judge_Composition_score']) / 3, 1)
-    data['SemiFinal_global_score'] = round((data['SemiFinal_1st_judge_global_score'] + data['SemiFinal_2nd_judge_global_score'] + data['SemiFinal_3rd_judge_global_score']) / 3, 1)
+    data['SemiFinal_global_Intensity_score'] = round((data['SemiFinal_1st_judge_Intensity_score'] + data[
+        'SemiFinal_2nd_judge_Intensity_score'] + data['SemiFinal_3rd_judge_Intensity_score']) / 3, 1)
+    data['SemiFinal_global_execution_score'] = round((data['SemiFinal_1st_judge_Execution_score'] + data[
+        'SemiFinal_2nd_judge_Execution_score'] + data['SemiFinal_3rd_judge_Execution_score']) / 3, 1)
+    data['SemiFinal_global_composition_score'] = round((data['SemiFinal_1st_judge_Composition_score'] + data[
+        'SemiFinal_2nd_judge_Composition_score'] + data['SemiFinal_3rd_judge_Composition_score']) / 3, 1)
+    data['SemiFinal_1st_judge_global_score'] = round((data['SemiFinal_1st_judge_Intensity_score'] + data[
+        'SemiFinal_1st_judge_Execution_score'] + data['SemiFinal_1st_judge_Composition_score']) / 3, 1)
+    data['SemiFinal_2nd_judge_global_score'] = round((data['SemiFinal_2nd_judge_Intensity_score'] + data[
+        'SemiFinal_2nd_judge_Execution_score'] + data['SemiFinal_2nd_judge_Composition_score']) / 3, 1)
+    data['SemiFinal_3rd_judge_global_score'] = round((data['SemiFinal_3rd_judge_Intensity_score'] + data[
+        'SemiFinal_3rd_judge_Execution_score'] + data['SemiFinal_3rd_judge_Composition_score']) / 3, 1)
+    data['SemiFinal_global_score'] = round((data['SemiFinal_1st_judge_global_score'] + data[
+        'SemiFinal_2nd_judge_global_score'] + data['SemiFinal_3rd_judge_global_score']) / 3, 1)
     data['SemiFinal_global_Intensity_pontuation'] = round(data['SemiFinal_global_Intensity_score'] * 3.34, 1)
     data['SemiFinal_global_execution_pontuation'] = round(data['SemiFinal_global_execution_score'] * 3.33, 1)
     data['SemiFinal_global_composition_pontuation'] = round(data['SemiFinal_global_composition_score'] * 3.33, 1)
-    data['SemiFinal_global_pontuation'] = round(data['SemiFinal_global_Intensity_pontuation'] + data['SemiFinal_global_execution_pontuation'] + data['SemiFinal_global_composition_pontuation'], 1)
+    data['SemiFinal_global_pontuation'] = round(
+        data['SemiFinal_global_Intensity_pontuation'] + data['SemiFinal_global_execution_pontuation'] + data[
+            'SemiFinal_global_composition_pontuation'], 1)
 
     return data
+
+
 def score_final(data):
-    data['Final_global_Intensity_score'] = round((data['Final_1st_judge_Intensity_score'] + data['Final_2nd_judge_Intensity_score'] + data['Final_3rd_judge_Intensity_score']) / 3, 1)
-    data['Final_global_execution_score'] = round((data['Final_1st_judge_Execution_score'] + data['Final_2nd_judge_Execution_score'] + data['Final_3rd_judge_Execution_score']) / 3, 1)
-    data['Final_global_composition_score'] = round((data['Final_1st_judge_Composition_score'] + data['Final_2nd_judge_Composition_score'] + data['Final_3rd_judge_Composition_score']) / 3, 1)
-    data['Final_1st_judge_global_score'] = round((data['Final_1st_judge_Intensity_score'] + data['Final_1st_judge_Execution_score'] + data['Final_1st_judge_Composition_score']) / 3, 1)
-    data['Final_2nd_judge_global_score'] = round((data['Final_2nd_judge_Intensity_score'] + data['Final_2nd_judge_Execution_score'] + data['Final_2nd_judge_Composition_score']) / 3, 1)
-    data['Final_3rd_judge_global_score'] = round((data['Final_3rd_judge_Intensity_score'] + data['Final_3rd_judge_Execution_score'] + data['Final_3rd_judge_Composition_score']) / 3, 1)
-    data['Final_global_score'] = round((data['Final_1st_judge_global_score'] + data['Final_2nd_judge_global_score'] + data['Final_3rd_judge_global_score']) / 3, 1)
+    data['Final_global_Intensity_score'] = round((data['Final_1st_judge_Intensity_score'] + data[
+        'Final_2nd_judge_Intensity_score'] + data['Final_3rd_judge_Intensity_score']) / 3, 1)
+    data['Final_global_execution_score'] = round((data['Final_1st_judge_Execution_score'] + data[
+        'Final_2nd_judge_Execution_score'] + data['Final_3rd_judge_Execution_score']) / 3, 1)
+    data['Final_global_composition_score'] = round((data['Final_1st_judge_Composition_score'] + data[
+        'Final_2nd_judge_Composition_score'] + data['Final_3rd_judge_Composition_score']) / 3, 1)
+    data['Final_1st_judge_global_score'] = round((data['Final_1st_judge_Intensity_score'] + data[
+        'Final_1st_judge_Execution_score'] + data['Final_1st_judge_Composition_score']) / 3, 1)
+    data['Final_2nd_judge_global_score'] = round((data['Final_2nd_judge_Intensity_score'] + data[
+        'Final_2nd_judge_Execution_score'] + data['Final_2nd_judge_Composition_score']) / 3, 1)
+    data['Final_3rd_judge_global_score'] = round((data['Final_3rd_judge_Intensity_score'] + data[
+        'Final_3rd_judge_Execution_score'] + data['Final_3rd_judge_Composition_score']) / 3, 1)
+    data['Final_global_score'] = round((data['Final_1st_judge_global_score'] + data['Final_2nd_judge_global_score'] +
+                                        data['Final_3rd_judge_global_score']) / 3, 1)
     data['Final_global_Intensity_pontuation'] = round(data['Final_global_Intensity_score'] * 3.34, 1)
     data['Final_global_execution_pontuation'] = round(data['Final_global_execution_score'] * 3.33, 1)
     data['Final_global_composition_pontuation'] = round(data['Final_global_composition_score'] * 3.33, 1)
-    data['Final_global_pontuation'] = round(data['Final_global_Intensity_pontuation'] + data['Final_global_execution_pontuation'] + data['Final_global_composition_pontuation'], 1)
+    data['Final_global_pontuation'] = round(
+        data['Final_global_Intensity_pontuation'] + data['Final_global_execution_pontuation'] + data[
+            'Final_global_composition_pontuation'], 1)
 
     return data
+
+
+def update_placement(competition, competition_round, category_in_competition,gender):
+    global_pontuation=''
+    if competition_round == 'QLF':
+        global_pontuation='-Q_global_pontuation'
+    elif competition_round == 'LCQ':
+        global_pontuation='-LCQ_global_pontuation'
+    elif competition_round == 'QrtFinal':
+        global_pontuation = '-QrtFinal_global_pontuation'
+    elif competition_round == 'SemiFinal':
+        global_pontuation = '-SemiFinal_global_pontuation'
+    elif competition_round == 'Final':
+        global_pontuation = '-Final_global_pontuation'
+
+    leaderboards = LeaderBoard.objects.filter(
+        competition=competition,
+        athlete_category_in_competition=category_in_competition,athlete_gender=gender
+    ).order_by(global_pontuation)
+
+    print('competition_round ' + competition_round)
+    for index, leaderboard in enumerate(leaderboards, start=1):
+        print('index ' + str(index))
+        if competition_round == 'QLF':
+            leaderboard.Q_placement = index
+        elif competition_round == 'LCQ':
+            leaderboard.LCQ_placement = index
+        elif competition_round == 'QrtFinal':
+            leaderboard.QrtFinal_placement = index
+        elif competition_round == 'SemiFinal':
+            leaderboard.SemiFinal_placement = index
+        elif competition_round == 'Final':
+            leaderboard.Final_placement = index
+
+        leaderboard.save()
+
 
 class LeaderBoardAPIView(generics.RetrieveUpdateAPIView):
     permission_classes = (permissions.DjangoModelPermissions,)
@@ -282,6 +378,10 @@ class LeaderBoardAPIView(generics.RetrieveUpdateAPIView):
         serializer = LeaderboardSerializer(leaderboard, data=request.data)
         if serializer.is_valid():
             serializer.save(competition=competition, username=username, athlete=athlete)
+            if competition_round:
+                update_placement(competition, competition_round, request.data.get('athlete_category_in_competition'),
+                                 request.data.get('athlete_gender'))
+
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
