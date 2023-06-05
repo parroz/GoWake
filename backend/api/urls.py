@@ -12,10 +12,11 @@ from .views import (CompetitionsAPIView,
                     CompetitionAPIView,
                     EventsAPIView,
                     EventAPIView,
-                    OfficialsAPIView,MatrixHeatSystemAPIView,
+                    OfficialsAPIView, MatrixHeatSystemAPIView,
                     OfficialAPIView,
                     AthletesAPIView, AthleteAPIView, AthleteEventAPIView, AthleteEventsAPIView,
-                    create_competition_from_xml, CompetitionsAppAPIView, CompetitionAppAPIView
+                    create_competition_from_xml, CompetitionsAppAPIView, CompetitionDetailAppAPIView,
+                    generate_heat_system, insert_all_view,LeaderBoardsAPIView,ladder_system,LeaderBoardAPIView
 
                     )
 """
@@ -31,13 +32,18 @@ urlpatterns = [
     # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     #path('', api_home.as_view()), # localhost:8000/api/
+    path('ladder-system/', ladder_system, name='ladder-heatsystem'),
+    path('competition/<int:competition_pk>/leaderboard/<int:leaderboard_pk>/', LeaderBoardAPIView.as_view(), name='competition_leaderboard'),
+    path('competition/<int:competition_pk>/leaderboards/', LeaderBoardsAPIView.as_view(), name='competition_leaderboards'),
+    path('generate-heatsystem/', generate_heat_system, name='generate-heatsystem'),
     path('matrix-heatsystem/', MatrixHeatSystemAPIView.as_view(), name='matrix-heatsystem'),
+    path('insert-all/', insert_all_view, name='insert-all'),
     path('create-all/', create_competition_from_xml, name='competition-create-all'),
     path('competition-create/', CompetitionsAPIView.as_view(), name='competition-create'),
     path('competitions/', CompetitionsAPIView.as_view(), name='competitions'),
     path('competitions/<int:pk>/', CompetitionAPIView.as_view(), name='competition'),
     path('competitions-calendar/', CompetitionsAppAPIView.as_view(), name='competitions-calendar'),
-    path('competition-app-detail/<int:pk>/', CompetitionAppAPIView.as_view(), name='competition-app-detail'),
+    path('competition-app-detail/<int:pk>/', CompetitionDetailAppAPIView.as_view(), name='competition-app-detail'),
 
     path('competition/<int:competition_pk>/events/', EventsAPIView.as_view(), name='competition_events'),
     path('competition/<int:competition_pk>/event/<int:event_pk>/', EventAPIView.as_view(), name='competition_event'),
