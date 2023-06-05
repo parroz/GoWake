@@ -24,8 +24,8 @@ SECRET_KEY = 'django-insecure-kf%)-sdb0%#9z3qxt2*s!k5*jms8=gcgp1p2$vx8kcyhncpr6@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '10.0.2.2','127.0.0.1']
-#ALLOWED_HOSTS = ['localhost', 'gowake.daletech.pt']
+#ALLOWED_HOSTS = ['localhost', '10.0.2.2','127.0.0.1']
+ALLOWED_HOSTS = ['localhost', 'gowake.daletech.pt']
 # Application definition
 
 INSTALLED_APPS = [
