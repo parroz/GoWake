@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework import generics, status
 from rest_framework.viewsets import ViewSet
 from rest_framework.decorators import action
+
+from .auxiliar_functions import get_leaderboards
 from .models import Competition, Event, Official, Athlete, AthleteEvent, MatrixHeatSystem, LeaderBoard
 from .pagination import CompetitionsAppPagination
 from .serializers import CompetitionSerializer, EventSerializer, OfficialSerializer, AthleteSerializer, \
@@ -309,38 +311,15 @@ def score_final(data):
     return data
 
 
-def update_placement(competition, competition_round, category_in_competition,gender):
-    global_pontuation=''
-    if competition_round == 'QLF':
-        global_pontuation='-Q_global_pontuation'
-    elif competition_round == 'LCQ':
-        global_pontuation='-LCQ_global_pontuation'
-    elif competition_round == 'QrtFinal':
-        global_pontuation = '-QrtFinal_global_pontuation'
-    elif competition_round == 'SemiFinal':
-        global_pontuation = '-SemiFinal_global_pontuation'
-    elif competition_round == 'Final':
-        global_pontuation = '-Final_global_pontuation'
+def update_placement(competition, competition_round, category_in_competition, gender, id):
+    global_pontuation = '-Q_global_pontuation'
 
-    leaderboards = LeaderBoard.objects.filter(
-        competition=competition,
-        athlete_category_in_competition=category_in_competition,athlete_gender=gender
-    ).order_by(global_pontuation)
+    leaderboards = get_leaderboards(competition, category_in_competition, gender, global_pontuation, id,
+                                    competition_round)
 
-    print('competition_round ' + competition_round)
     for index, leaderboard in enumerate(leaderboards, start=1):
-        print('index ' + str(index))
-        if competition_round == 'QLF':
-            leaderboard.Q_placement = index
-        elif competition_round == 'LCQ':
-            leaderboard.LCQ_placement = index
-        elif competition_round == 'QrtFinal':
-            leaderboard.QrtFinal_placement = index
-        elif competition_round == 'SemiFinal':
-            leaderboard.SemiFinal_placement = index
-        elif competition_round == 'Final':
-            leaderboard.Final_placement = index
-
+        leaderboard.Q_placement = index
+        leaderboard.global_pontuation = leaderboard.Q_global_pontuation
         leaderboard.save()
 
 
@@ -360,27 +339,18 @@ class LeaderBoardAPIView(generics.RetrieveUpdateAPIView):
         leaderboard = LeaderBoard.objects.get(pk=leaderboard_pk)
         username = self.request.user
         competition = Competition.objects.get(id=competition_pk)
-
         athlete = Athlete.objects.get(id=request.data.get('athlete_id'))
         competition_round = request.data.get('round')
-
-        if competition_round == 'QLF':
-            score_qlf(request.data)
-        if competition_round == 'LCQ':
-            score_lcq(request.data)
-        if competition_round == 'QrtFinal':
-            score_qrt_final(request.data)
-        if competition_round == 'SemiFinal':
-            score_semi_final(request.data)
-        if competition_round == 'Final':
-            score_final(request.data)
-
+        print("update leaderboard 1")
+        score_qlf(request.data)
+        print("update leaderboard 2")
         serializer = LeaderboardSerializer(leaderboard, data=request.data)
+        print("update leaderboard 3")
         if serializer.is_valid():
             serializer.save(competition=competition, username=username, athlete=athlete)
             if competition_round:
                 update_placement(competition, competition_round, request.data.get('athlete_category_in_competition'),
-                                 request.data.get('athlete_gender'))
+                                 request.data.get('athlete_gender'), request.data.get('id'))
 
             return Response(serializer.data)
         else:
@@ -427,13 +397,27 @@ class EventAPIView(generics.RetrieveUpdateDestroyAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class CompetitionsAppAPIView(generics.ListCreateAPIView):
+class CompetitionsAppAPIView(generics.ListAPIView):
     permission_classes = (permissions.DjangoModelPermissions,)
     queryset = Competition.objects.all()
     serializer_class = CompetitionsAppSerializer
     filter_backends = [DjangoFilterBackend]
     # pagination_class = CompetitionsAppPagination
     filterset_fields = ['code', 'organizing_country']
+
+    def list(self, request, *args, **kwargs):
+        competitions = self.get_queryset()  # Retrieve all competitions
+        serializer = self.get_serializer(competitions, many=True)  # Serialize competitions
+        list_competitions = []
+        for competition in competitions:
+            officials = Official.objects.filter(competition=competition.id)
+            for official in officials:
+                if official.iwwfid == self.kwargs.get('iwwf_id'):
+                    list_competitions.append(competition)
+                    break
+
+        filtered_serializer = self.get_serializer(list_competitions, many=True)  # Serialize filtered competitions
+        return Response({"results": filtered_serializer.data, "count": len(filtered_serializer.data)})
 
     def get_queryset(self):
         return Competition.objects.all()
@@ -498,9 +482,42 @@ def ladder_system(request):
     serializer = LadderSystem(data=request.data, context={'request': request})
     if serializer.is_valid():
         serializer.save()
-        return Response({"message": "Heat system generated successfully."}, status=status.HTTP_201_CREATED)
+        return Response({"message": "Ladder system generated successfully."}, status=status.HTTP_201_CREATED)
     else:
-        return Response({"ERROR": "Heat system was not generated."}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"ERROR": "Ladder system was not generated."}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LeaderBoardsCategoryAPIView(generics.ListAPIView):
+    permission_classes = (permissions.DjangoModelPermissions,)
+    queryset = LeaderBoard.objects.all()
+    serializer_class = LeaderboardSerializer
+
+    def get_queryset(self):
+        if self.kwargs.get('competition_pk'):
+            return self.queryset.filter(competition=self.kwargs.get('competition_pk'),
+                                        athlete_category_in_competition=self.kwargs.get('category'),
+                                        round=self.kwargs.get('round'),
+                                        Q_Heat_number=self.kwargs.get('heat_number'),
+                                        athlete_gender=self.kwargs.get('gender')).order_by('Q_Starting_list')
+        return self.queryset.all()
+
+
+# @api_view(['GET'])
+# def get_leaderboards_by_category(request):
+#     category = request.GET.get('category')
+#     round = request.GET.get('round')
+#     gender = request.GET.get('gender')
+#     competition_id = request.GET.get('competition_pk')
+#
+#     leaderboards = LeaderBoard.objects.filter(
+#         category=category,
+#         round=round,
+#         gender=gender,
+#         competition_id=competition_id
+#     )
+#
+#     serializer = LeaderboardSerializer(leaderboards, many=True)
+#     return Response(serializer.data, status=200)
 
 
 @api_view(['POST'])

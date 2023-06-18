@@ -6,7 +6,7 @@ from ..models import JuryCode
 
 class RegistrationJurySerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True)
-
+    print('RegistrationJurySerializer')
     class Meta:
         model = User
         fields = ['username', 'email', 'password', 'password2']
@@ -24,6 +24,7 @@ class RegistrationJurySerializer(serializers.ModelSerializer):
 
         if User.objects.filter(email=self.validated_data['email']).exists():
             raise serializers.ValidationError({'error': 'Email already exist!'})
+
 
         account = User(email=self.validated_data['email'], username=self.validated_data['username'])
         account.set_password(password)
