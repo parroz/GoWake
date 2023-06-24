@@ -336,6 +336,7 @@ class LeaderBoardAPIView(generics.RetrieveUpdateAPIView):
         return get_object_or_404(self.get_queryset(), pk=self.kwargs.get('leaderboard_pk'))
 
     def put(self, request, competition_pk, leaderboard_pk):
+        print("update judgesheet")
         leaderboard = LeaderBoard.objects.get(pk=leaderboard_pk)
         username = self.request.user
         competition = Competition.objects.get(id=competition_pk)
