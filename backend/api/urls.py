@@ -16,6 +16,7 @@ from .views import (CompetitionsAPIView,
                     OfficialAPIView,
                     AthletesAPIView, AthleteAPIView, AthleteEventAPIView, AthleteEventsAPIView,
                     create_competition_from_xml, CompetitionsAppAPIView, CompetitionDetailAppAPIView,
+                    LeaderBoardsCategoryAPIView,
                     generate_heat_system, insert_all_view,LeaderBoardsAPIView,ladder_system,LeaderBoardAPIView
 
                     )
@@ -32,8 +33,12 @@ urlpatterns = [
     # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     #path('', api_home.as_view()), # localhost:8000/api/
+    path('competition/<int:competition_pk>/category/<str:category>/gender/<str:gender>/round/<str:round>/heat/<str:heat_number>/',
+         LeaderBoardsCategoryAPIView.as_view(), name='leaderboards-category'),
     path('ladder-system/', ladder_system, name='ladder-heatsystem'),
     path('competition/<int:competition_pk>/leaderboard/<int:leaderboard_pk>/', LeaderBoardAPIView.as_view(), name='competition_leaderboard'),
+    path('leaderboard/<int:leaderboard_pk>/', LeaderBoardAPIView.as_view(),
+         name='leaderboard'),
     path('competition/<int:competition_pk>/leaderboards/', LeaderBoardsAPIView.as_view(), name='competition_leaderboards'),
     path('generate-heatsystem/', generate_heat_system, name='generate-heatsystem'),
     path('matrix-heatsystem/', MatrixHeatSystemAPIView.as_view(), name='matrix-heatsystem'),
@@ -42,7 +47,7 @@ urlpatterns = [
     path('competition-create/', CompetitionsAPIView.as_view(), name='competition-create'),
     path('competitions/', CompetitionsAPIView.as_view(), name='competitions'),
     path('competitions/<int:pk>/', CompetitionAPIView.as_view(), name='competition'),
-    path('competitions-calendar/', CompetitionsAppAPIView.as_view(), name='competitions-calendar'),
+    path('competitions-calendar/<str:iwwf_id>', CompetitionsAppAPIView.as_view(), name='competitions-calendar'),
     path('competition-app-detail/<int:pk>/', CompetitionDetailAppAPIView.as_view(), name='competition-app-detail'),
 
     path('competition/<int:competition_pk>/events/', EventsAPIView.as_view(), name='competition_events'),

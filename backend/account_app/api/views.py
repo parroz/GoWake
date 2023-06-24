@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from ..models import receiver, create_auth_token, JuryCode
 from django.contrib.auth.models import Group
-
+from django.contrib.auth.models import User
 
 @api_view(['POST'])
 def logout_view(request):
@@ -18,11 +18,12 @@ def logout_view(request):
 
 @api_view(['POST'])
 def register_jury_view(request):
+    print('register_jury_view')
     if request.method == 'POST':
         serializer = RegistrationJurySerializer(data=request.data)
         data = {}
         if not JuryCode.objects.filter(code=request.data['code']).exists():
-            return Response({"error": "The entered code " + request.data['password'] + " does not exist!"}, status=400)
+            return Response({"error": "The entered code " + request.data['code'] + " does not exist!"}, status=400)
 
         if serializer.is_valid():
             account = serializer.save()
@@ -33,6 +34,15 @@ def register_jury_view(request):
             data['email'] = account.email
             token = Token.objects.get(user=account).key
             data['token'] = token
+            print('update jury code')
+
+            user = User.objects.get(username=account.username)
+            if JuryCode.objects.filter(code=request.data['code'], username=user).exists():
+                return Response({"error": "The entered code and username already associate!"}, status=400)
+            print('register_jury_view 2')
+            jury_code = JuryCode.objects.get(code=request.data['code'])
+            jury_code.username = user
+            jury_code.save()
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -58,11 +68,36 @@ def registration_view(request):
 
 
 @api_view(['POST'])
+def login_app_view(request):
+    if request.method == 'POST':
+        username = request.data['username']
+        password = request.data['password']
+        user = authenticate(username=username, password=password)
+        juryCode = JuryCode.objects.filter(username=user).first()
+
+        if user:
+            response_data = {
+                "token": user.auth_token.key,
+                "email": user.email,
+                "username": user.username,
+                "role": user.groups.first().name if user.groups.all() else "None"
+            }
+
+            if juryCode:
+                response_data["juryCode"] = juryCode.code
+
+            return Response(response_data)
+        else:
+            return Response({"error": "Wrong Credentials"}, status=400)
+
+
+@api_view(['POST'])
 def login_view(request):
     if request.method == 'POST':
         username = request.data['username']
         password = request.data['password']
         user = authenticate(username=username, password=password)
+
         if user:
             return Response(
                 {"token": user.auth_token.key, "email": user.email, "username": user.username,
