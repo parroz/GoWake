@@ -13,7 +13,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 
 class JuryCode(models.Model):
-    code = models.CharField(max_length=10)
+    code = models.CharField(max_length=10,blank=True)
     createAt = models.DateTimeField(auto_now_add=True)
     updateAt = models.DateTimeField(auto_now=True)
     username = models.ForeignKey(User, on_delete=models.CASCADE)
