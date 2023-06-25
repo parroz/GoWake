@@ -555,7 +555,7 @@ class LadderSystem(serializers.ModelSerializer):
                     if 11 <= heat_system_female.Riders <= 12:
                         process_leaderboards_11_12_LCQ(phase, competition, 'F', athlete_event,user)
             if phase == 'Final':
-                set_ranking_pontuation(competition, 'F', athlete_event)
+                set_ranking_pontuation(competition, 'F', athlete_event,phase)
 
             athletes_male = Athlete.objects.filter(category_in_competition=athlete_event.category_in_competition,
                                                    gender='M')
@@ -575,7 +575,7 @@ class LadderSystem(serializers.ModelSerializer):
                     if 11 <= heat_system_male.Riders <= 12:
                         process_leaderboards_11_12_LCQ(phase, competition, 'M', athlete_event,user)
                 if phase == 'Final':
-                    set_ranking_pontuation(competition, 'M', athlete_event)
+                    set_ranking_pontuation(competition, 'M', athlete_event,phase)
 
         return {"message": "Ladder system generated successfully."}
 

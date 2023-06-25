@@ -91,7 +91,6 @@ class Athlete(Base):
     gender = models.CharField(max_length=1)
     year_of_birth = models.IntegerField()
     ranking = models.IntegerField(default=0)
-    ranking_points = models.IntegerField(default=0)
     events = models.ManyToManyField(AthleteEvent, related_name='events', blank=True)
     real_category = models.CharField(max_length=5, blank=True)
     category_in_competition = models.CharField(max_length=10, blank=True)
@@ -195,15 +194,6 @@ class Categorie(models.Model):
         return self.description
 
 
-class EventDescription(models.Model):
-    description = models.CharField(max_length=100, blank=True)
-    code = models.CharField(max_length=10, blank=True)
-    gender = models.CharField(max_length=5, blank=True)
-
-    def __str__(self):
-        return self.description
-
-
 class LeaderBoard(Base):
     athlete = models.ForeignKey(Athlete, related_name='athlete_leaderboard', on_delete=models.CASCADE)
     competition = models.ForeignKey(Competition, related_name='competition_leaderboard', on_delete=models.CASCADE)
@@ -254,9 +244,9 @@ class LeaderBoard(Base):
     Q_1st_judge_notes = models.CharField(max_length=150, blank=True)
     Q_2nd_judge_notes = models.CharField(max_length=150, blank=True)
     Q_3rd_judge_notes = models.CharField(max_length=150, blank=True)
-    Q_1st_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, default=None)
-    Q_2nd_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, default=None)
-    Q_3nd_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, default=None)
+    Q_1st_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, blank=True, default=None)
+    Q_2nd_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, blank=True, default=None)
+    Q_3nd_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, blank=True, default=None)
     Q_global_Intensity_score = models.FloatField(default=0)
     Q_global_execution_score = models.FloatField(default=0)
     Q_global_composition_score = models.FloatField(default=0)

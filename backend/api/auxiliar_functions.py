@@ -33,53 +33,61 @@ def order_list_asc(phase):
     return global_pontuation
 
 
-def set_ranking_pontuation(competition, gender, athlete_event):
+def set_ranking_pontuation(competition, gender, athlete_event,phase):
     leaderboards = LeaderBoard.objects.filter(
         competition=competition,
         athlete_category_in_competition=athlete_event.category_in_competition, athlete_gender=gender,
-        Final_Heat_number=1
-    ).order_by('-Final_global_pontuation')
+        Q_Heat_number=1, round=phase
+    ).order_by('-Q_global_pontuation')
 
-    for index, leaderboard in enumerate(leaderboards, start=1):
-        if index == 1:
+    index = 0
+    for leaderboard in leaderboards:
+
+        if index == 0 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 100
-        if index == 2:
+        if index == 1 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 80
-        if index == 3:
+        if index == 2 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 65
-        if index == 4:
+        if index == 3 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 55
-        if index == 5:
+        if index == 4 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 45
-        if index == 6:
+        if index == 5 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 35
-        if index == 7:
+        if index == 6 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 30
-        if index == 8:
+        if index == 7 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 25
-        if index == 9:
+        if index == 8 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 20
-        if index == 10:
+        if index == 9 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 17
-        if index == 11:
+        if index == 10 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 14
-        if index == 12:
+        if index == 11 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 11
-        if index == 13:
+        if index == 12 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 8
-        if index == 14:
+        if index == 13 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 6
-        if index == 15:
+        if index == 14 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 5
-        if index == 16:
+        if index == 15 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 4
-        if index == 17:
+        if index == 16 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 3
-        if index == 18:
+        if index == 17 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 2
-        if index >= 19:
+        if index >= 18 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 1
+
+        if leaderboard.global_pontuation ==0:
+            leaderboard.ranking_event_final_points = 0
+
         leaderboard.save()
+        index+= 1
+
 
 
 def set_new_leaderboard(round, leaderboard, idx, user):
