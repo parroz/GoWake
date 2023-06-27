@@ -114,7 +114,7 @@ class LeaderboardSerializer(serializers.ModelSerializer):
 class LeaderboardCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = LeaderBoard
-        fields = ['round', 'athlete_category_in_competition', 'athlete_gender','Q_Heat_number']
+        fields = ['round', 'athlete_category_in_competition', 'athlete_gender', 'Q_Heat_number']
 
 
 class CompetitionAppSerializer(serializers.ModelSerializer):
@@ -544,18 +544,18 @@ class LadderSystem(serializers.ModelSerializer):
 
                 if phase == 'QLF':
                     if 3 <= heat_system_female.Riders <= 6:
-                        process_leaderboards_3_6(phase, competition, 'F', athlete_event,user)
+                        process_leaderboards_3_6(phase, competition, 'F', athlete_event, user)
                     if 7 <= heat_system_female.Riders <= 10:
-                        process_leaderboards_7_10(phase, competition, 'F', athlete_event,user)
+                        process_leaderboards_7_10(phase, competition, 'F', athlete_event, user)
                     if 11 <= heat_system_female.Riders <= 12:
-                        process_leaderboards_11_12(phase, competition, 'F', athlete_event, heat_system_female,user)
+                        process_leaderboards_11_12(phase, competition, 'F', athlete_event, heat_system_female, user)
                 if phase == 'LCQ':
                     if 7 <= heat_system_female.Riders <= 10:
-                        process_leaderboards_7_10_LCQ(phase, competition, 'F', athlete_event,user)
+                        process_leaderboards_7_10_LCQ(phase, competition, 'F', athlete_event, user)
                     if 11 <= heat_system_female.Riders <= 12:
-                        process_leaderboards_11_12_LCQ(phase, competition, 'F', athlete_event,user)
+                        process_leaderboards_11_12_LCQ(phase, competition, 'F', athlete_event, user)
             if phase == 'Final':
-                set_ranking_pontuation(competition, 'F', athlete_event,phase)
+                set_ranking_pontuation(competition, 'F', athlete_event, phase)
 
             athletes_male = Athlete.objects.filter(category_in_competition=athlete_event.category_in_competition,
                                                    gender='M')
@@ -564,64 +564,20 @@ class LadderSystem(serializers.ModelSerializer):
                 heat_system_male = MatrixHeatSystem.objects.get(Riders=len(athletes_male))
                 if phase == 'QLF':
                     if 3 <= heat_system_male.Riders <= 6:
-                        process_leaderboards_3_6(phase, competition, 'M', athlete_event,user)
+                        process_leaderboards_3_6(phase, competition, 'M', athlete_event, user)
                     if 7 <= heat_system_male.Riders <= 10:
-                        process_leaderboards_7_10(phase, competition, 'M', athlete_event,user)
+                        process_leaderboards_7_10(phase, competition, 'M', athlete_event, user)
                     if 11 <= heat_system_male.Riders <= 12:
-                        process_leaderboards_11_12(phase, competition, 'M', athlete_event, heat_system_male,user)
+                        process_leaderboards_11_12(phase, competition, 'M', athlete_event, heat_system_male, user)
                 if phase == 'LCQ':
                     if 7 <= heat_system_male.Riders <= 10:
-                        process_leaderboards_7_10_LCQ(phase, competition, 'M', athlete_event,user)
+                        process_leaderboards_7_10_LCQ(phase, competition, 'M', athlete_event, user)
                     if 11 <= heat_system_male.Riders <= 12:
-                        process_leaderboards_11_12_LCQ(phase, competition, 'M', athlete_event,user)
+                        process_leaderboards_11_12_LCQ(phase, competition, 'M', athlete_event, user)
                 if phase == 'Final':
-                    set_ranking_pontuation(competition, 'M', athlete_event,phase)
+                    set_ranking_pontuation(competition, 'M', athlete_event, phase)
 
         return {"message": "Ladder system generated successfully."}
-
-
-class UploadFromXml(serializers.ModelSerializer):
-    events = EventSerializer(many=True)
-    officials = OfficialSerializer(many=True)
-    athletes = AthleteXmlSerializer(many=True)
-    username = serializers.StringRelatedField(read_only=True)
-    athlete_events = AthleteEventSerializer(many=True)
-
-    def validate_code(self, value):
-        if len(value) == 0:
-            raise serializers.ValidationError("Code is a required field!")
-        else:
-            return value
-
-    class Meta:
-        model = Competition
-        fields = '__all__'
-
-    def create(self, validated_data):
-        officials_data = validated_data.pop('officials')
-        events_data = validated_data.pop('events')
-        athletes_data = validated_data.pop('athletes')
-        athlete_events_data = validated_data.pop('athlete_events')
-        user = self.context.get("request").user
-        competition = Competition.objects.create(username=user, **validated_data)
-
-        for official_data in officials_data:
-            Official.objects.create(competition=competition, **official_data, username=user)
-
-        for event_data in events_data:
-            event = Event.objects.create(competition=competition, **event_data, username=user)
-            for athlete_event in athlete_events_data:
-                if athlete_event["code"] == event_data["code"]:
-                    AthleteEvent.objects.create(competition=competition, event=event, **athlete_event, username=user)
-
-        for athlete in athletes_data:
-            ev = athlete.pop('events')
-            codes = [event['code'] for event in ev]
-            events = AthleteEvent.objects.filter(code__in=codes)
-            athlete_obj = Athlete.objects.create(competition=competition, **athlete, username=user)
-            athlete_obj.events.set(events)
-
-        return competition
 
 
 class InsertAllSerializer(serializers.ModelSerializer):
@@ -643,25 +599,20 @@ class InsertAllSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         print("teste")
         user = self.context.get("request").user
-        # Create Competition instance
         competition_data = validated_data.copy()
         events_data = competition_data.pop('events')
         jury_data = competition_data.pop('officials')
-        print("1")
         athletes_data = competition_data.pop('athletes')
         competition = Competition.objects.create(**competition_data, username=user)
 
-        # Create Event instances
         for event_data in events_data:
             Event.objects.create(competition=competition, **event_data, username=user)
 
-        # Create Official instances
         for official_data in jury_data:
             Official.objects.create(competition=competition, **official_data, username=user)
+            official_iwwfid = official_data.get('iwwfid')
 
-        # Create Athlete instances
         for athlete_data in athletes_data:
-            print("2")
             athlete_events_data = athlete_data.pop('events')
 
             for athlete_event_data in athlete_events_data:
@@ -678,9 +629,7 @@ class InsertAllSerializer(serializers.ModelSerializer):
                     AthleteEvent.objects.create(competition=competition, event=event, **athlete_event_data,
                                                 username=user)
                 break
-            # athlete.events.create(competition=competition, event=event, **athlete_event_data,
-            #                          username=user)
-            # athlete.events.set(athlete_events)
+
         return competition
 
 

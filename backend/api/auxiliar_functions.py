@@ -33,7 +33,7 @@ def order_list_asc(phase):
     return global_pontuation
 
 
-def set_ranking_pontuation(competition, gender, athlete_event,phase):
+def set_ranking_pontuation(competition, gender, athlete_event, phase):
     leaderboards = LeaderBoard.objects.filter(
         competition=competition,
         athlete_category_in_competition=athlete_event.category_in_competition, athlete_gender=gender,
@@ -82,12 +82,11 @@ def set_ranking_pontuation(competition, gender, athlete_event,phase):
         if index >= 18 and leaderboard.global_pontuation > 0:
             leaderboard.ranking_event_final_points = 1
 
-        if leaderboard.global_pontuation ==0:
+        if leaderboard.global_pontuation == 0:
             leaderboard.ranking_event_final_points = 0
 
         leaderboard.save()
-        index+= 1
-
+        index += 1
 
 
 def set_new_leaderboard(round, leaderboard, idx, user):
