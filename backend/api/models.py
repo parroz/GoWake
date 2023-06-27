@@ -91,7 +91,6 @@ class Athlete(Base):
     gender = models.CharField(max_length=1)
     year_of_birth = models.IntegerField()
     ranking = models.IntegerField(default=0)
-    ranking_points = models.IntegerField(default=0)
     events = models.ManyToManyField(AthleteEvent, related_name='events', blank=True)
     real_category = models.CharField(max_length=5, blank=True)
     category_in_competition = models.CharField(max_length=10, blank=True)
@@ -114,54 +113,54 @@ class MatrixHeatSystem(models.Model):
 
     Riders_Q_Heat1 = models.IntegerField(null=True, default=0)
     TopRidersToFinal_Q_Heat1 = models.IntegerField(null=True, default=0)
-    TopRidersToSemiFinal_Q_Heat1 = models.CharField(max_length=20, blank=True)
-    TopRidersToQrtFinal_Q_Heat1 = models.CharField(max_length=20, blank=True)
-    RemainingRidersToLCQ_Q_Heat1 = models.CharField(max_length=20, blank=True)
+    TopRidersToSemiFinal_Q_Heat1 = models.IntegerField(null=True, default=0)
+    TopRidersToQrtFinal_Q_Heat1 = models.IntegerField(null=True, default=0)
+    RemainingRidersToLCQ_Q_Heat1 = models.IntegerField(null=True, default=0)
 
     Riders_Q_Heat2 = models.IntegerField(null=True, default=0)
     TopRidersToFinal_Q_Heat2 = models.IntegerField(null=True, default=0)
-    TopRidersToSemiFinal_Q_Heat2 = models.CharField(max_length=20, blank=True)
-    TopRidersToQrtFinal_Q_Heat2 = models.CharField(max_length=20, blank=True)
-    RemainingRidersToLCQ_Q_Heat2 = models.CharField(max_length=20, blank=True)
+    TopRidersToSemiFinal_Q_Heat2 = models.IntegerField(null=True, default=0)
+    TopRidersToQrtFinal_Q_Heat2 = models.IntegerField(null=True, default=0)
+    RemainingRidersToLCQ_Q_Heat2 = models.IntegerField(null=True, default=0)
 
     Riders_Q_Heat3 = models.IntegerField(null=True, default=0)
     TopRidersToFinal_Q_Heat3 = models.IntegerField(null=True, default=0)
-    TopRidersToSemiFinal_Q_Heat3 = models.CharField(max_length=20, blank=True)
-    TopRidersToQrtFinal_Q_Heat3 = models.CharField(max_length=20, blank=True)
-    RemainingRidersToLCQ_Q_Heat3 = models.CharField(max_length=20, blank=True)
+    TopRidersToSemiFinal_Q_Heat3 = models.IntegerField(null=True, default=0)
+    TopRidersToQrtFinal_Q_Heat3 = models.IntegerField(null=True, default=0)
+    RemainingRidersToLCQ_Q_Heat3 = models.IntegerField(null=True, default=0)
 
     Riders_Q_Heat4 = models.IntegerField(null=True, default=0)
     TopRidersToFinal_Q_Heat4 = models.IntegerField(null=True, default=0)
-    TopRidersToSemiFinal_Q_Heat4 = models.CharField(max_length=20, blank=True)
-    TopRidersToQrtFinal_Q_Heat4 = models.CharField(max_length=20, blank=True)
-    RemainingRidersToLCQ_Q_Heat4 = models.CharField(max_length=20, blank=True)
+    TopRidersToSemiFinal_Q_Heat4 = models.IntegerField(null=True, default=0)
+    TopRidersToQrtFinal_Q_Heat4 = models.IntegerField(null=True, default=0)
+    RemainingRidersToLCQ_Q_Heat4 = models.IntegerField(null=True, default=0)
 
     Riders_Q_Heat5 = models.IntegerField(null=True, default=0)
     TopRidersToFinal_Q_Heat5 = models.IntegerField(null=True, default=0)
-    TopRidersToSemiFinal_Q_Heat5 = models.CharField(max_length=20, blank=True)
-    TopRidersToQrtFinal_Q_Heat5 = models.CharField(max_length=20, blank=True)
-    RemainingRidersToLCQ_Q_Heat5 = models.CharField(max_length=20, blank=True)
+    TopRidersToSemiFinal_Q_Heat5 = models.IntegerField(null=True, default=0)
+    TopRidersToQrtFinal_Q_Heat5 = models.IntegerField(null=True, default=0)
+    RemainingRidersToLCQ_Q_Heat5 = models.IntegerField(null=True, default=0)
 
     Riders_Q_Heat6 = models.IntegerField(null=True, default=0)
     TopRidersToFinal_Q_Heat6 = models.IntegerField(null=True, default=0)
-    TopRidersToSemiFinal_Q_Heat6 = models.CharField(max_length=20, blank=True)
-    TopRidersToQrtFinal_Q_Heat6 = models.CharField(max_length=20, blank=True)
-    RemainingRidersToLCQ_Q_Heat6 = models.CharField(max_length=20, blank=True)
+    TopRidersToSemiFinal_Q_Heat6 = models.IntegerField(null=True, default=0)
+    TopRidersToQrtFinal_Q_Heat6 = models.IntegerField(null=True, default=0)
+    RemainingRidersToLCQ_Q_Heat6 = models.IntegerField(null=True, default=0)
 
     Riders_LCQ_Heat1 = models.IntegerField(null=True, default=0)
     TopRidersToFinal_LCQ_Heat1 = models.IntegerField(null=True, default=0)
-    TopRidersToSemiFinal_LCQ_Heat1 = models.CharField(max_length=20, blank=True)
-    TopRidersToQrtFinal_LCQ_Heat1 = models.CharField(max_length=20, blank=True)
+    TopRidersToSemiFinal_LCQ_Heat1 = models.IntegerField(null=True, default=0)
+    TopRidersToQrtFinal_LCQ_Heat1 = models.IntegerField(null=True, default=0)
 
     Riders_LCQ_Heat2 = models.IntegerField(null=True, default=0)
     TopRidersToFinal_LCQ_Heat2 = models.IntegerField(null=True, default=0)
-    TopRidersToSemiFinal_LCQ_Heat2 = models.CharField(max_length=20, blank=True)
-    TopRidersToQrtFinal_LCQ_Heat2 = models.CharField(max_length=20, blank=True)
+    TopRidersToSemiFinal_LCQ_Heat2 = models.IntegerField(null=True, default=0)
+    TopRidersToQrtFinal_LCQ_Heat2 = models.IntegerField(null=True, default=0)
 
     Riders_LCQ_Heat3 = models.IntegerField(null=True, default=0)
     TopRidersToFinal_LCQ_Heat3 = models.IntegerField(null=True, default=0)
-    TopRidersToSemiFinal_LCQ_Heat3 = models.CharField(max_length=20, blank=True)
-    TopRidersToQrtFinal_LCQ_Heat3 = models.CharField(max_length=20, blank=True)
+    TopRidersToSemiFinal_LCQ_Heat3 = models.IntegerField(null=True, default=0)
+    TopRidersToQrtFinal_LCQ_Heat3 = models.IntegerField(null=True, default=0)
 
     Riders_QrtFinal_Heat1 = models.IntegerField(null=True, default=0)
     TopRidersToSemiFinal_QrtFinal_Heat1 = models.IntegerField(null=True, default=0)
@@ -190,15 +189,6 @@ class MatrixHeatSystem(models.Model):
 class Categorie(models.Model):
     description = models.CharField(max_length=20, blank=True)
     code = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.description
-
-
-class EventDescription(models.Model):
-    description = models.CharField(max_length=100, blank=True)
-    code = models.CharField(max_length=10, blank=True)
-    gender = models.CharField(max_length=5, blank=True)
 
     def __str__(self):
         return self.description
@@ -254,9 +244,9 @@ class LeaderBoard(Base):
     Q_1st_judge_notes = models.CharField(max_length=150, blank=True)
     Q_2nd_judge_notes = models.CharField(max_length=150, blank=True)
     Q_3rd_judge_notes = models.CharField(max_length=150, blank=True)
-    Q_1st_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, default=None)
-    Q_2nd_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, default=None)
-    Q_3nd_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, default=None)
+    Q_1st_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, blank=True, default=None)
+    Q_2nd_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, blank=True, default=None)
+    Q_3nd_judge_submit_DateTime = models.DateTimeField(auto_now=False, null=True, blank=True, default=None)
     Q_global_Intensity_score = models.FloatField(default=0)
     Q_global_execution_score = models.FloatField(default=0)
     Q_global_composition_score = models.FloatField(default=0)
@@ -271,6 +261,5 @@ class LeaderBoard(Base):
 
     def __str__(self):
         return str(self.athlete) + " " + self.athlete_gender + " " + self.athlete_category_in_competition \
-               + " Q_Heat_number " + str(self.Q_Heat_number) + " Q_Starting_list " + str(self.Q_Starting_list) + " ranking " + str(self.ranking)
-
-
+               + " Q_Heat_number " + str(self.Q_Heat_number) + " Q_Starting_list " + str(
+            self.Q_Starting_list) + " ranking " + str(self.ranking)
